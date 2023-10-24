@@ -42,13 +42,21 @@ def modBoxR_change(index):
         case 7 : sendi("01_mode_7")
         case 8 : sendi("01_mode_8")
         case 9 : sendi("01_mode_9")
-
-#def mod_change_fid(value: str):
-#    match value:
-#        case "": sendi("")
-#        case "": sendi("")
-#        case "02255": sendi("")
-
+def set_col_ind (x, u, y):
+    getattr(ui, x).setCurrentIndex(u)
+    getattr(ui, x).setStyleSheet(f"background-color: {y}; color: white;")
+def mod_change_fid(x):
+    match x:
+        case "01_mode_0": set_col_ind("modBoxR", 0, "grey")
+        case "01_mode_1": set_col_ind("modBoxR", 1, "grey")
+        case "01_mode_2": set_col_ind("modBoxR", 2, "grey")
+        case "01_mode_3": set_col_ind("modBoxR", 3, "grey")
+        case "01_mode_4": set_col_ind("modBoxR", 4, "grey")
+        case "01_mode_5": set_col_ind("modBoxR", 5, "grey")
+        case "01_mode_6": set_col_ind("modBoxR", 6, "grey")
+        case "01_mode_7": set_col_ind ("modBoxR", 7, "grey")
+        case "01_mode_8": set_col_ind ("modBoxR", 8, "grey")
+        case "01_mode_9": set_col_ind ("modBoxR", 9, "grey")
 
 
 def briBoxR_change(index):
@@ -85,7 +93,7 @@ def onRead():
     if data[0] == 'redled_off':
         ui.redB.setStyleSheet("background-color: black; color: white;")
 
-    #mod_change_fid(data[0])
+    mod_change_fid(data[0])
 
 
         #if len(data) == 3:
