@@ -17,9 +17,11 @@ for port in ports:
     portList.append(port.portName())
 ui.comboBox.addItems(portList)
 
-def onOpen():
+def onOpen(): # ok
     serial.setPortName(ui.comboBox.currentText())
     serial.open(QIODevice.ReadWrite)
+    sendi("garland_echo")
+    sendi("red_led_echo")
 
 def onClose():
     serial.close()
@@ -29,7 +31,6 @@ def sendi (datic):
 
 def modBoxR_change(index):
     print("Selected index modBoxR:", index)
-
     match index :
         case 0 : sendi("01_mode_0")
         case 1 : sendi("01_mode_1")
@@ -42,9 +43,16 @@ def modBoxR_change(index):
         case 8 : sendi("01_mode_8")
         case 9 : sendi("01_mode_9")
 
+#def mod_change_fid(value: str):
+#    match value:
+#        case "": sendi("")
+#        case "": sendi("")
+#        case "02255": sendi("")
+
+
+
 def briBoxR_change(index):
     print("Selected index briBoxR:", index)
-
     match index :
         case 0 : sendi("02_bri_0")
         case 1 : sendi("02_bri_1")
@@ -67,27 +75,28 @@ def onRead():
     if data[0] == 'hello':
         ui.openB.setStyleSheet("background-color: green; color: white;")
 
-    if data[0] == 'garland1':
+    if data[0] == 'garland_on':
         ui.pushB.setStyleSheet("background-color: green; color: white;")
-
-    if data[0] == 'garland0':
+    if data[0] == 'garland_off':
         ui.pushB.setStyleSheet("background-color: black; color: white;")
 
-    if data[0] == 'redled':
-        if data[1] == '1':
-            ui.redB.setStyleSheet("background-color: green; color: white;")
-        if data[1] == '0':
-            ui.redB.setStyleSheet("background-color: black; color: white;")
+    if data[0] == 'redled_on':
+        ui.redB.setStyleSheet("background-color: green; color: white;")
+    if data[0] == 'redled_off':
+        ui.redB.setStyleSheet("background-color: black; color: white;")
 
-        if len(data) == 3:
-            if data[2] != '_' :
-                ui.modBoxR.setCurrentIndex(int(data[2]))
-                ui.modBoxR.setStyleSheet("background-color: grey; color: white;")
+    #mod_change_fid(data[0])
 
-        if len(data) == 4:
-            print("0000000000000000")
-            if data[3] != '_' :
-                print("dedthdthdhtedherbdf")
+
+        #if len(data) == 3:
+            #if data[2] != '_' :
+                #ui.modBoxR.setCurrentIndex(int(data[2]))
+                #ui.modBoxR.setStyleSheet("background-color: grey; color: white;")
+
+        #if len(data) == 4:
+            #print("0000000000000000")
+            #if data[3] != '_' :
+                #print("dedthdthdhtedherbdf")
                 #if data[3] == 'M' :
                     #ui.briBoxR.setCurrentIndex(10)
                     #ui.briBoxR.setStyleSheet("background-color: grey; color: white;")
