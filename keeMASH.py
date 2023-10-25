@@ -58,6 +58,19 @@ def mod_change_fid(x):
         case "01_mode_8": set_col_ind ("modBoxR", 8, "grey")
         case "01_mode_9": set_col_ind ("modBoxR", 9, "grey")
 
+def bri_change_fid(x):
+    match x:
+        case "020": set_col_ind("briBoxR", 0, "grey")
+        case "0226": set_col_ind("briBoxR", 1, "grey")
+        case "0251": set_col_ind("briBoxR", 2, "grey")
+        case "0277": set_col_ind("briBoxR", 3, "grey")
+        case "02102": set_col_ind("briBoxR", 4, "grey")
+        case "02128": set_col_ind("briBoxR", 5, "grey")
+        case "02153": set_col_ind("briBoxR", 6, "grey")
+        case "02179": set_col_ind ("briBoxR", 7, "grey")
+        case "02204": set_col_ind ("briBoxR", 8, "grey")
+        case "02230": set_col_ind ("briBoxR", 9, "grey")
+        case "02255": set_col_ind ("briBoxR", 10, "grey")
 
 def briBoxR_change(index):
     print("Selected index briBoxR:", index)
@@ -94,6 +107,7 @@ def onRead():
         ui.redB.setStyleSheet("background-color: black; color: white;")
 
     mod_change_fid(data[0])
+    bri_change_fid(data[0])
 
 
         #if len(data) == 3:
