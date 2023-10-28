@@ -1,7 +1,9 @@
 
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
-from PyQt5.QtCore import QIODevice
+from PyQt5.QtCore import QIODevice, QTimer
+#import time
+import threading
 
 
 app = QtWidgets.QApplication([])
@@ -9,7 +11,7 @@ ui = uic.loadUi("keeMASH.ui")
 ui.setWindowTitle("keeMASH")
 
 serial = QSerialPort()
-serial.setBaudRate(9600)
+serial.setBaudRate (9600)
 portList = []
 ports = QSerialPortInfo().availablePorts()
 
@@ -17,11 +19,21 @@ for port in ports:
     portList.append(port.portName())
 ui.comboBox.addItems(portList)
 
-def onOpen(): # ok
+def onOpen():
     serial.setPortName(ui.comboBox.currentText())
     serial.open(QIODevice.ReadWrite)
-    sendi("garland_echo")
-    sendi("red_led_echo")
+    # feedback()
+
+def feedback():
+    commands = [("garland_echo", 100), ("red_led_echo", 1000)]
+    for i, (command, delay) in enumerate(commands):
+        QTimer.singleShot(sum(item[1] for item in commands[:i+1]), lambda cmd=command: sendi(cmd))
+    print("feeeeeeeeeeee")
+
+# def feedback():
+#     QTimer.singleShot(100, lambda: sendi("garland_echo"))
+#     QTimer.singleShot(1000, lambda: sendi("red_led_echo"))
+#     print("feeeeeeeeeeee")
 
 def onClose():
     serial.close()
@@ -135,6 +147,8 @@ ui.modBoxR.activated.connect(modBoxR_change)
 ui.briBoxR.activated.connect(briBoxR_change)
 
 serial.readyRead.connect(onRead)
+
+ui.upB.clicked.connect(feedback)
 
 ui.openB.clicked.connect(onOpen)
 ui.closeB.clicked.connect(onClose)

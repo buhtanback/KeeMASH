@@ -30,10 +30,10 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>10</y>
       <width>95</width>
-      <height>117</height>
+      <height>91</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -62,7 +62,7 @@
       <x>530</x>
       <y>10</y>
       <width>194</width>
-      <height>162</height>
+      <height>182</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -219,6 +219,22 @@
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="upB">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>81</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>update</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -226,7 +242,7 @@
      <x>0</x>
      <y>0</y>
      <width>848</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
