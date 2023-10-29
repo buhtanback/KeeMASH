@@ -62,7 +62,7 @@
       <x>530</x>
       <y>10</y>
       <width>194</width>
-      <height>183</height>
+      <height>213</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -199,6 +199,9 @@
         <string>speed</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdSp"/>
      </item>
      <item>
       <widget class="QSplitter" name="splitter">

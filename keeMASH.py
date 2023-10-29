@@ -111,9 +111,9 @@ def onRead():
     if data[0] == 'redled_off':
         ui.redB.setStyleSheet("background-color: black; color: white;")
 
-    # if data[0][:2] == '03':
-    #     spF = data[0][2:]
-    #     print(spF + "99999999999999999999999")
+    if data[0][:2] == '03':
+        spF = data[0][2:]
+        ui.lcdSp.display(spF)
 
     mod_change_fid(data[0])
     bri_change_fid(data[0])
