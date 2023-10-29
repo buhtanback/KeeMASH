@@ -2,8 +2,7 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
 from PyQt5.QtCore import QIODevice, QTimer
-#import time
-import threading
+
 
 
 app = QtWidgets.QApplication([])
@@ -22,18 +21,12 @@ ui.comboBox.addItems(portList)
 def onOpen():
     serial.setPortName(ui.comboBox.currentText())
     serial.open(QIODevice.ReadWrite)
-    # feedback()
 
 def feedback():
-    commands = [("garland_echo", 100), ("red_led_echo", 1000)]
+    commands = [("garland_echo", 100), ("red_led_echo", 1100)]
     for i, (command, delay) in enumerate(commands):
         QTimer.singleShot(sum(item[1] for item in commands[:i+1]), lambda cmd=command: sendi(cmd))
     print("feeeeeeeeeeee")
-
-# def feedback():
-#     QTimer.singleShot(100, lambda: sendi("garland_echo"))
-#     QTimer.singleShot(1000, lambda: sendi("red_led_echo"))
-#     print("feeeeeeeeeeee")
 
 def onClose():
     serial.close()
@@ -118,29 +111,12 @@ def onRead():
     if data[0] == 'redled_off':
         ui.redB.setStyleSheet("background-color: black; color: white;")
 
+    # if data[0][:2] == '03':
+    #     spF = data[0][2:]
+    #     print(spF + "99999999999999999999999")
+
     mod_change_fid(data[0])
     bri_change_fid(data[0])
-
-
-        #if len(data) == 3:
-            #if data[2] != '_' :
-                #ui.modBoxR.setCurrentIndex(int(data[2]))
-                #ui.modBoxR.setStyleSheet("background-color: grey; color: white;")
-
-        #if len(data) == 4:
-            #print("0000000000000000")
-            #if data[3] != '_' :
-                #print("dedthdthdhtedherbdf")
-                #if data[3] == 'M' :
-                    #ui.briBoxR.setCurrentIndex(10)
-                    #ui.briBoxR.setStyleSheet("background-color: grey; color: white;")
-
-        #if len(data) >= 4:
-        #    print("dedthdthdhtedherbdf")
-            #if int(data[2]) >= 0 and int(data[2]) <= 9:
-                #ui.modBoxR.setCurrentIndex(int(data[2]))
-                #ui.modBoxR.setStyleSheet("background-color: grey; color: white;")
-
 
 
 ui.modBoxR.activated.connect(modBoxR_change)
@@ -155,8 +131,8 @@ ui.closeB.clicked.connect(onClose)
 ui.pushB.clicked.connect(lambda: sendi("garland"))
 ui.redB.clicked.connect(lambda: sendi("power"))
 
-ui.speedBU.clicked.connect(lambda: sendi("red_led_speed+"))
-ui.speedBD.clicked.connect(lambda: sendi("red_led_speed-"))
+ui.speedBU.clicked.connect(lambda: sendi("redl_sp+"))
+ui.speedBD.clicked.connect(lambda: sendi("redl_sp-"))
 
 
 ui.show()
