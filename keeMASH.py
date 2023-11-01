@@ -128,6 +128,8 @@ ui.upB.clicked.connect(feedback)
 
 ui.openB.clicked.connect(onOpen)
 ui.closeB.clicked.connect(onClose)
+
+ui.bedLB.clicked.connect(lambda: sendi("bedside"))
 ui.pushB.clicked.connect(lambda: sendi("garland"))
 ui.redB.clicked.connect(lambda: sendi("power"))
 
