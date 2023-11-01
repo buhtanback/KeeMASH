@@ -111,6 +111,11 @@ def onRead():
     if data[0] == 'redled_off':
         ui.redB.setStyleSheet("background-color: black; color: white;")
 
+    if data[0] == 'bedside_on':
+        ui.bedLB.setStyleSheet("background-color: green; color: white;")
+    if data[0] == 'bedside_off':
+        ui.bedLB.setStyleSheet("background-color: black; color: white;")
+
     if data[0][:2] == '03':
         spF = data[0][2:]
         ui.lcdSp.display(spF)
