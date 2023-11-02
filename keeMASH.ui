@@ -248,18 +248,27 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="ppmB">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>490</y>
-      <width>83</width>
-      <height>29</height>
+      <x>10</x>
+      <y>480</y>
+      <width>82</width>
+      <height>61</height>
      </rect>
     </property>
-    <property name="text">
-     <string>ppm</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QPushButton" name="ppmB">
+       <property name="text">
+        <string>ppm</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdPpm"/>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

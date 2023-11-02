@@ -120,6 +120,10 @@ def onRead():
         spF = data[0][2:]
         ui.lcdSp.display(spF)
 
+    if data[0][:2] == '04':
+        ppm = data[0][2:]
+        ui.lcdPpm.display(ppm)
+
     mod_change_fid(data[0])
     bri_change_fid(data[0])
 
