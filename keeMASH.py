@@ -137,6 +137,7 @@ ui.closeB.clicked.connect(onClose)
 ui.bedLB.clicked.connect(lambda: sendi("bedside"))
 ui.pushB.clicked.connect(lambda: sendi("garland"))
 ui.redB.clicked.connect(lambda: sendi("power"))
+ui.ppmB.clicked.connect(lambda: sendi("ppm_echo"))
 
 ui.speedBU.clicked.connect(lambda: sendi("redl_sp+"))
 ui.speedBD.clicked.connect(lambda: sendi("redl_sp-"))
