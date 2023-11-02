@@ -123,6 +123,7 @@ def onRead():
     if data[0][:2] == '04':
         ppm = data[0][2:]
         ui.lcdPpm.display(ppm)
+        ui.ppmB.setStyleSheet("background-color: green; color: white;")
 
     mod_change_fid(data[0])
     bri_change_fid(data[0])
