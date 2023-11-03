@@ -125,6 +125,11 @@ def onRead():
         ui.lcdPpm.display(ppm)
         ui.ppmB.setStyleSheet("background-color: green; color: white;")
 
+    if data[0][:2] == '05':
+        temp = data[0][2:]
+        ui.lcdTemp.display(temp)
+        ui.tempB.setStyleSheet("background-color: green; color: white;")
+
     mod_change_fid(data[0])
     bri_change_fid(data[0])
 
@@ -143,6 +148,7 @@ ui.bedLB.clicked.connect(lambda: sendi("bedside"))
 ui.pushB.clicked.connect(lambda: sendi("garland"))
 ui.redB.clicked.connect(lambda: sendi("power"))
 ui.ppmB.clicked.connect(lambda: sendi("ppm_echo"))
+ui.tempB.clicked.connect(lambda: sendi("temp_echo"))
 
 ui.speedBU.clicked.connect(lambda: sendi("redl_sp+"))
 ui.speedBD.clicked.connect(lambda: sendi("redl_sp-"))

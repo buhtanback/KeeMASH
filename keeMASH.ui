@@ -253,20 +253,38 @@
      <rect>
       <x>10</x>
       <y>480</y>
-      <width>82</width>
-      <height>61</height>
+      <width>173</width>
+      <height>63</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_3">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="ppmB">
-       <property name="text">
-        <string>ppm</string>
-       </property>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QPushButton" name="ppmB">
+         <property name="text">
+          <string>ppm</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdPpm"/>
+       </item>
+      </layout>
      </item>
      <item>
-      <widget class="QLCDNumber" name="lcdPpm"/>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QPushButton" name="tempB">
+         <property name="text">
+          <string>temp</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdTemp"/>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
