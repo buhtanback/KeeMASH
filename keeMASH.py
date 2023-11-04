@@ -136,7 +136,7 @@ def onRead():
 
     if data[0][:2] == '07':
         lux = data[0][2:]
-        print(lux)
+        ui.lcdLux.setDigitCount(7)
         ui.lcdLux.display(lux)
         ui.luxB.setStyleSheet("background-color: green; color: white;")
 

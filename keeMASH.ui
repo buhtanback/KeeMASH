@@ -248,83 +248,79 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>480</y>
-      <width>264</width>
-      <height>65</height>
+      <width>355</width>
+      <height>67</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
+        <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QPushButton" name="ppmB">
-           <property name="text">
-            <string>ppm</string>
-           </property>
-          </widget>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QPushButton" name="ppmB">
+             <property name="text">
+              <string>ppm</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLCDNumber" name="lcdPpm"/>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QLCDNumber" name="lcdPpm"/>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QPushButton" name="tempB">
+             <property name="text">
+              <string>temp</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLCDNumber" name="lcdTemp"/>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
+        <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
-          <widget class="QPushButton" name="tempB">
+          <widget class="QPushButton" name="humiB">
            <property name="text">
-            <string>temp</string>
+            <string>humidity</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLCDNumber" name="lcdTemp"/>
+          <widget class="QLCDNumber" name="lcdHumi"/>
          </item>
         </layout>
        </item>
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_5">
+      <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
-        <widget class="QPushButton" name="humiB">
+        <widget class="QPushButton" name="luxB">
          <property name="text">
-          <string>humidity</string>
+          <string>lux</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLCDNumber" name="lcdHumi"/>
+        <widget class="QLCDNumber" name="lcdLux"/>
        </item>
       </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>480</y>
-      <width>85</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_6">
-     <item>
-      <widget class="QPushButton" name="luxB">
-       <property name="text">
-        <string>lux</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLCDNumber" name="lcdLux"/>
      </item>
     </layout>
    </widget>
