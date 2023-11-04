@@ -4,7 +4,6 @@ from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
 from PyQt5.QtCore import QIODevice, QTimer
 
 
-
 app = QtWidgets.QApplication([])
 ui = uic.loadUi("keeMASH.ui")
 ui.setWindowTitle("keeMASH")
@@ -135,6 +134,12 @@ def onRead():
         ui.lcdHumi.display(humi)
         ui.humiB.setStyleSheet("background-color: green; color: white;")
 
+    if data[0][:2] == '07':
+        lux = data[0][2:]
+        print(lux)
+        ui.lcdLux.display(lux)
+        ui.luxB.setStyleSheet("background-color: green; color: white;")
+
     mod_change_fid(data[0])
     bri_change_fid(data[0])
 
@@ -152,9 +157,11 @@ ui.closeB.clicked.connect(onClose)
 ui.bedLB.clicked.connect(lambda: sendi("bedside"))
 ui.pushB.clicked.connect(lambda: sendi("garland"))
 ui.redB.clicked.connect(lambda: sendi("power"))
+
 ui.ppmB.clicked.connect(lambda: sendi("ppm_echo"))
 ui.tempB.clicked.connect(lambda: sendi("temp_echo"))
 ui.humiB.clicked.connect(lambda: sendi("humi_echo"))
+ui.luxB.clicked.connect(lambda: sendi("lux_echo"))
 
 ui.speedBU.clicked.connect(lambda: sendi("redl_sp+"))
 ui.speedBD.clicked.connect(lambda: sendi("redl_sp-"))
