@@ -140,6 +140,12 @@ def onRead():
         ui.lcdLux.display(lux)
         ui.luxB.setStyleSheet("background-color: green; color: white;")
 
+    if data[0][:2] == '08':
+        atm = data[0][2:]
+        ui.lcdAtm.setDigitCount(6)
+        ui.lcdAtm.display(atm)
+        ui.atmB.setStyleSheet("background-color: green; color: white;")
+
     mod_change_fid(data[0])
     bri_change_fid(data[0])
 
@@ -162,6 +168,7 @@ ui.ppmB.clicked.connect(lambda: sendi("ppm_echo"))
 ui.tempB.clicked.connect(lambda: sendi("temp_echo"))
 ui.humiB.clicked.connect(lambda: sendi("humi_echo"))
 ui.luxB.clicked.connect(lambda: sendi("lux_echo"))
+ui.atmB.clicked.connect(lambda: sendi("atm_echo"))
 
 ui.speedBU.clicked.connect(lambda: sendi("redl_sp+"))
 ui.speedBD.clicked.connect(lambda: sendi("redl_sp-"))
