@@ -9,7 +9,7 @@ ui = uic.loadUi("keeMASH.ui")
 ui.setWindowTitle("keeMASH")
 
 serial = QSerialPort()
-serial.setBaudRate (9600)
+serial.setBaudRate (115200)
 portList = []
 ports = QSerialPortInfo().availablePorts()
 
@@ -169,6 +169,7 @@ ui.tempB.clicked.connect(lambda: sendi("temp_echo"))
 ui.humiB.clicked.connect(lambda: sendi("humi_echo"))
 ui.luxB.clicked.connect(lambda: sendi("lux_echo"))
 ui.atmB.clicked.connect(lambda: sendi("atm_echo"))
+ui.reloB.clicked.connect(lambda: sendi("sens_echo"))
 
 ui.speedBU.clicked.connect(lambda: sendi("redl_sp+"))
 ui.speedBD.clicked.connect(lambda: sendi("redl_sp-"))
