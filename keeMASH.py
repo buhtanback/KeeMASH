@@ -22,7 +22,7 @@ def onOpen():
     serial.open(QIODevice.ReadWrite)
 
 def feedback():
-    commands = [("garland_echo", 100), ("red_led_echo", 1100)]
+    commands = [("garland_echo", 2000), ("red_led_echo", 2000), ("sens_echo", 2000)]
     for i, (command, delay) in enumerate(commands):
         QTimer.singleShot(sum(item[1] for item in commands[:i+1]), lambda cmd=command: sendi(cmd))
     print("feeeeeeeeeeee")
@@ -169,7 +169,6 @@ ui.tempB.clicked.connect(lambda: sendi("temp_echo"))
 ui.humiB.clicked.connect(lambda: sendi("humi_echo"))
 ui.luxB.clicked.connect(lambda: sendi("lux_echo"))
 ui.atmB.clicked.connect(lambda: sendi("atm_echo"))
-ui.reloB.clicked.connect(lambda: sendi("sens_echo"))
 
 ui.speedBU.clicked.connect(lambda: sendi("redl_sp+"))
 ui.speedBD.clicked.connect(lambda: sendi("redl_sp-"))
