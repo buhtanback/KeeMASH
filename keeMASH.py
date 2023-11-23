@@ -34,33 +34,15 @@ def sendi (datic):
     serial.writeData(datic.encode('utf-8'))
 
 def modBoxR_change(index):
-    print("Selected index modBoxR:", index)
-    match index :
-        case 0 : sendi("01_mode_0")
-        case 1 : sendi("01_mode_1")
-        case 2 : sendi("01_mode_2")
-        case 3 : sendi("01_mode_3")
-        case 4 : sendi("01_mode_4")
-        case 5 : sendi("01_mode_5")
-        case 6 : sendi("01_mode_6")
-        case 7 : sendi("01_mode_7")
-        case 8 : sendi("01_mode_8")
-        case 9 : sendi("01_mode_9")
+    sendi(f'01_mode_{index}')
+
 def set_col_ind (x, u, y):
     getattr(ui, x).setCurrentIndex(u)
     getattr(ui, x).setStyleSheet(f"background-color: {y}; color: white;")
+    
 def mod_change_fid(x):
-    match x:
-        case "01_mode_0": set_col_ind("modBoxR", 0, "grey")
-        case "01_mode_1": set_col_ind("modBoxR", 1, "grey")
-        case "01_mode_2": set_col_ind("modBoxR", 2, "grey")
-        case "01_mode_3": set_col_ind("modBoxR", 3, "grey")
-        case "01_mode_4": set_col_ind("modBoxR", 4, "grey")
-        case "01_mode_5": set_col_ind("modBoxR", 5, "grey")
-        case "01_mode_6": set_col_ind("modBoxR", 6, "grey")
-        case "01_mode_7": set_col_ind ("modBoxR", 7, "grey")
-        case "01_mode_8": set_col_ind ("modBoxR", 8, "grey")
-        case "01_mode_9": set_col_ind ("modBoxR", 9, "grey")
+    if x[:2] == '01':
+        set_col_ind("modBoxR", int(x[-1]), "grey")
 
 def bri_change_fid(x):
     match x:
@@ -77,19 +59,9 @@ def bri_change_fid(x):
         case "02255": set_col_ind ("briBoxR", 10, "grey")
 
 def briBoxR_change(index):
-    print("Selected index briBoxR:", index)
-    match index :
-        case 0 : sendi("02_bri_0")
-        case 1 : sendi("02_bri_1")
-        case 2 : sendi("02_bri_2")
-        case 3 : sendi("02_bri_3")
-        case 4 : sendi("02_bri_4")
-        case 5 : sendi("02_bri_5")
-        case 6 : sendi("02_bri_6")
-        case 7 : sendi("02_bri_7")
-        case 8 : sendi("02_bri_8")
-        case 9 : sendi("02_bri_9")
-        case 10 : sendi("02_bri_M")
+    if index <= 9:
+        sendi(f'02_bri_{index}')
+    else: sendi(f'02_bri_M')
 
 def onRead():
     rx = serial.readLine()
