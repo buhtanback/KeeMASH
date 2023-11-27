@@ -39,7 +39,7 @@ def modBoxR_change(index):
 def set_col_ind (x, u, y):
     getattr(ui, x).setCurrentIndex(u)
     getattr(ui, x).setStyleSheet(f"background-color: {y}; color: white;")
-    
+
 def mod_change_fid(x):
     if x[:2] == '01':
         set_col_ind("modBoxR", int(x[-1]), "grey")
@@ -62,6 +62,14 @@ def briBoxR_change(index):
     if index <= 9:
         sendi(f'02_bri_{index}')
     else: sendi(f'02_bri_M')
+
+def reti():                                # тут можуть бути баги
+    txt = "05" + ui.spedE.text()
+    ui.spedE.clear()
+    sendi(txt)
+def send2mash():                                # тут можуть бути баги
+    sendi(ui.sendL.text())
+    ui.sendL.clear()
 
 def onRead():
     rx = serial.readLine()
@@ -145,6 +153,8 @@ ui.atmB.clicked.connect(lambda: sendi("atm_echo"))
 ui.speedBU.clicked.connect(lambda: sendi("redl_sp+"))
 ui.speedBD.clicked.connect(lambda: sendi("redl_sp-"))
 
+ui.spedE.returnPressed.connect(reti)
+ui.sendL.returnPressed.connect(send2mash)
 
 ui.show()
 app.exec()

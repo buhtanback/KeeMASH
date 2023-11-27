@@ -20,7 +20,7 @@
       <x>10</x>
       <y>10</y>
       <width>95</width>
-      <height>102</height>
+      <height>137</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -41,170 +41,11 @@
      <item>
       <widget class="QComboBox" name="comboBox"/>
      </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>10</y>
-      <width>194</width>
-      <height>213</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QPushButton" name="redB">
+      <widget class="QLineEdit" name="sendL">
        <property name="text">
-        <string>red led</string>
+        <string>send2MASH</string>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="briBoxR">
-       <item>
-        <property name="text">
-         <string>0%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>10%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>20%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>30%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>40%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>50%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>60%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>70%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>80%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>90%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>100%</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="modBoxR">
-       <item>
-        <property name="text">
-         <string>rainbow</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>rainbowG</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>bpm</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>red</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>juggle</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>sinelon</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>confetti</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>green</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>rasta</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>white</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <widget class="Line" name="line">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>speed</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLCDNumber" name="lcdSp"/>
-     </item>
-     <item>
-      <widget class="QSplitter" name="splitter">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <widget class="QPushButton" name="speedBU">
-        <property name="text">
-         <string>+</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="speedBD">
-        <property name="text">
-         <string>-</string>
-        </property>
-       </widget>
       </widget>
      </item>
     </layout>
@@ -342,6 +183,244 @@
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>10</y>
+      <width>131</width>
+      <height>222</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="redB">
+       <property name="maximumSize">
+        <size>
+         <width>169</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>red led</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="briBoxR">
+       <property name="maximumSize">
+        <size>
+         <width>169</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <item>
+        <property name="text">
+         <string>0%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>10%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>20%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>30%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>40%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>50%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>60%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>70%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>80%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>90%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>100%</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="modBoxR">
+       <property name="maximumSize">
+        <size>
+         <width>169</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <item>
+        <property name="text">
+         <string>rainbow</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>rainbowG</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>bpm</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>red</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>juggle</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>sinelon</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>confetti</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>green</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>rasta</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>white</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="line">
+       <property name="maximumSize">
+        <size>
+         <width>169</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="maximumSize">
+        <size>
+         <width>169</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>speed</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QLCDNumber" name="lcdSp">
+         <property name="maximumSize">
+          <size>
+           <width>169</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="spedE">
+         <property name="maximumSize">
+          <size>
+           <width>98</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QPushButton" name="speedBU">
+         <property name="maximumSize">
+          <size>
+           <width>51</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>+</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="speedBD">
+         <property name="maximumSize">
+          <size>
+           <width>51</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>upB</zorder>
+   <zorder>splitter_2</zorder>
+   <zorder>layoutWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
