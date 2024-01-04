@@ -20,9 +20,16 @@ for port in ports:
     portList.append(port.portName())
 ui.comboBox.addItems(portList)
 
+def clear_cho_table():
+    cursor = choBD.cursor()
+    cursor.execute("DELETE FROM humidity")
+
+    choBD.commit()
+    cursor.close()
+
 def get_cho():
     cursor = choBD.cursor()
-    cursor.execute("SELECT * FROM humidity ORDER BY date ASC LIMIT 8")
+    cursor.execute("SELECT * FROM humidity ORDER BY date DESC LIMIT 8")
     results = cursor.fetchall()
     cursor.close()
     return results
@@ -55,8 +62,8 @@ def feedback():
     print("feeeeeeeeeeee")
 
 def onClose():
-    #serial.close()
-    update_choT()
+    serial.close()
+    #clear_cho_table()
 
 def sendi (datic):
     serial.writeData(datic.encode('utf-8'))
@@ -157,6 +164,7 @@ def onRead():
     if data[0][:2] == '09':
         cho = data[0][2:]
         add_choinka_db(cho)
+        update_choT()
 
 
     mod_change_fid(data[0])
