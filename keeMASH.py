@@ -2,7 +2,10 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
 from PyQt5.QtCore import QIODevice, QTimer
+import sqlite3
+import datetime
 
+choBD = sqlite3.connect('choinka_data.db')
 
 app = QtWidgets.QApplication([])
 ui = uic.loadUi("keeMASH.ui")
@@ -17,6 +20,30 @@ for port in ports:
     portList.append(port.portName())
 ui.comboBox.addItems(portList)
 
+def get_cho():
+    cursor = choBD.cursor()
+    cursor.execute("SELECT * FROM humidity ORDER BY date ASC LIMIT 8")
+    results = cursor.fetchall()
+    cursor.close()
+    return results
+
+def update_choT():
+
+    first_measurements = get_cho()
+    display_text = ""
+    for date, humidity in first_measurements:
+        display_text += f"{date} choinka {humidity}\n"
+
+    ui.choT.setText(display_text)
+
+def add_choinka_db(x):
+    choBD = sqlite3.connect('choinka_data.db')
+    c = choBD.cursor()
+    c.execute("INSERT INTO humidity (date, humidity_level) VALUES (?, ?)",
+              (datetime.datetime.now().strftime("%m-%d %H:%M"), x))
+    choBD.commit()
+    choBD.close()
+
 def onOpen():
     serial.setPortName(ui.comboBox.currentText())
     serial.open(QIODevice.ReadWrite)
@@ -28,7 +55,8 @@ def feedback():
     print("feeeeeeeeeeee")
 
 def onClose():
-    serial.close()
+    #serial.close()
+    update_choT()
 
 def sendi (datic):
     serial.writeData(datic.encode('utf-8'))
@@ -126,6 +154,11 @@ def onRead():
         ui.lcdAtm.display(atm)
         ui.atmB.setStyleSheet("background-color: green; color: white;")
 
+    if data[0][:2] == '09':
+        cho = data[0][2:]
+        add_choinka_db(cho)
+
+
     mod_change_fid(data[0])
     bri_change_fid(data[0])
 
@@ -149,6 +182,8 @@ ui.tempB.clicked.connect(lambda: sendi("temp_echo"))
 ui.humiB.clicked.connect(lambda: sendi("humi_echo"))
 ui.luxB.clicked.connect(lambda: sendi("lux_echo"))
 ui.atmB.clicked.connect(lambda: sendi("atm_echo"))
+
+ui.choB.clicked.connect(lambda: sendi("choinka"))
 
 ui.speedBU.clicked.connect(lambda: sendi("redl_sp+"))
 ui.speedBD.clicked.connect(lambda: sendi("redl_sp-"))

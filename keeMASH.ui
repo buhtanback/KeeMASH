@@ -416,11 +416,39 @@
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="choB">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>370</y>
+      <width>83</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>choinka</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="choT">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>410</y>
+      <width>151</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>upB</zorder>
    <zorder>splitter_2</zorder>
    <zorder>layoutWidget</zorder>
+   <zorder>choB</zorder>
+   <zorder>choT</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
