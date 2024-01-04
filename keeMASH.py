@@ -56,7 +56,7 @@ def onOpen():
     serial.open(QIODevice.ReadWrite)
 
 def feedback():
-    commands = [("garland_echo", 2000), ("red_led_echo", 2000), ("sens_echo", 2000)]
+    commands = [("garland_echo", 2000), ("red_led_echo", 2000), ("sens_echo", 2000), ("choinka", 2000), ("bedside_echo", 2000)]
     for i, (command, delay) in enumerate(commands):
         QTimer.singleShot(sum(item[1] for item in commands[:i+1]), lambda cmd=command: sendi(cmd))
     print("feeeeeeeeeeee")
@@ -114,6 +114,7 @@ def onRead():
 
     if data[0] == 'hello':
         ui.openB.setStyleSheet("background-color: green; color: white;")
+        feedback()
 
     if data[0] == 'garland_on':
         ui.pushB.setStyleSheet("background-color: green; color: white;")
@@ -165,6 +166,7 @@ def onRead():
         cho = data[0][2:]
         add_choinka_db(cho)
         update_choT()
+        ui.choB.setStyleSheet("background-color: green; color: white;")
 
 
     mod_change_fid(data[0])
