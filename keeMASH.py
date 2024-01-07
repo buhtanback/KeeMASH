@@ -116,6 +116,11 @@ def onRead():
         ui.openB.setStyleSheet("background-color: green; color: white;")
         feedback()
 
+    if data[0] == 'pimpa':
+        ui.pumpB.setStyleSheet("background-color: green; color: white;")
+    if data[0] == 'turbo1':
+        ui.turbo1B.setStyleSheet("background-color: black; color: white;")
+
     if data[0] == 'garland_on':
         ui.pushB.setStyleSheet("background-color: green; color: white;")
     if data[0] == 'garland_off':
@@ -129,7 +134,7 @@ def onRead():
     if data[0] == 'bedside_on':
         ui.bedLB.setStyleSheet("background-color: green; color: white;")
     if data[0] == 'bedside_off':
-        ui.bedLB.setStyleSheet("background-color: black; color: white;")
+        ui.bedLB.setStyleSheet("background-color: green; color: white;")
 
     if data[0][:2] == '03':
         spF = data[0][2:]
@@ -207,6 +212,9 @@ ui.tempB.clicked.connect(lambda: sendi("temp_echo"))
 ui.humiB.clicked.connect(lambda: sendi("humi_echo"))
 ui.luxB.clicked.connect(lambda: sendi("lux_echo"))
 ui.atmB.clicked.connect(lambda: sendi("atm_echo"))
+
+ui.pumpB.clicked.connect(lambda: sendi("pomp"))
+ui.turbo1B.clicked.connect(lambda: sendi("turbo1"))
 
 ui.choB.clicked.connect(lambda: sendi("choinka"))
 
