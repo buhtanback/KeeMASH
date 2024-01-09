@@ -188,6 +188,19 @@ def onRead():
         ui.lcdpm10.display(pm10)
         ui.pm10B.setStyleSheet("background-color: green; color: white;")
 
+    if data[0][:2] == '13':
+        x = data[0][2:]
+        if x == '1':
+            ui.pumpB.setStyleSheet("background-color: green; color: white;")
+        else: ui.pumpB.setStyleSheet("background-color: black; color: white;")
+
+    if data[0][:2] == '14':
+        x = data[0][2:]
+        if x == '1':
+            ui.turbo1B.setStyleSheet("background-color: green; color: white;")
+        else: ui.turbo1B.setStyleSheet("background-color: black; color: white;")
+
+
 
     mod_change_fid(data[0])
     bri_change_fid(data[0])
