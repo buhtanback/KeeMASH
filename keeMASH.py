@@ -200,6 +200,18 @@ def onRead():
             ui.turbo1B.setStyleSheet("background-color: green; color: white;")
         else: ui.turbo1B.setStyleSheet("background-color: black; color: white;")
 
+    if data[0][:2] == '16':
+        x = data[0][2:]
+        if x == '1':
+            ui.flowB.setStyleSheet("background-color: green; color: white;")
+        else: ui.flowB.setStyleSheet("background-color: black; color: white;")
+
+    if data[0][:2] == '17':
+        x = data[0][2:]
+        if x == '1':
+            ui.ionB.setStyleSheet("background-color: green; color: white;")
+        else: ui.ionB.setStyleSheet("background-color: black; color: white;")
+
 
 
     mod_change_fid(data[0])
@@ -228,6 +240,8 @@ ui.atmB.clicked.connect(lambda: sendi("atm_echo"))
 
 ui.pumpB.clicked.connect(lambda: sendi("pomp"))
 ui.turbo1B.clicked.connect(lambda: sendi("turbo1"))
+ui.flowB.clicked.connect(lambda: sendi("flow"))
+ui.ionB.clicked.connect(lambda: sendi("ion"))
 
 ui.choB.clicked.connect(lambda: sendi("choinka"))
 
