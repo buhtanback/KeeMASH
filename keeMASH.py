@@ -56,7 +56,7 @@ def onOpen():
     serial.open(QIODevice.ReadWrite)
 
 def feedback():
-    commands = [("garland_echo", 1900), ("red_led_echo", 1900), ("sens_echo", 1900), ("choinka", 1900), ("bedside_echo", 1900)]
+    commands = [("garland_echo", 1500), ("red_led_echo", 1500), ("sens_echo", 1500), ("choinka", 1500), ("bedside_echo", 1500), ("echo_turb", 1500)]
     for i, (command, delay) in enumerate(commands):
         QTimer.singleShot(sum(item[1] for item in commands[:i+1]), lambda cmd=command: sendi(cmd))
     print("feeeeeeeeeeee")
@@ -212,6 +212,22 @@ def onRead():
             ui.ionB.setStyleSheet("background-color: green; color: white;")
         else: ui.ionB.setStyleSheet("background-color: black; color: white;")
 
+    if data[0][:2] == '15':
+        if data[0][2:3] == '0':
+            ui.turbo1B.setStyleSheet("background-color: green; color: white;")
+        else: ui.turbo1B.setStyleSheet("background-color: black; color: white;")
+
+        if data[0][3:4] == '0':
+            ui.pumpB.setStyleSheet("background-color: green; color: white;")
+        else: ui.pumpB.setStyleSheet("background-color: black; color: white;")
+
+        if data[0][4:5] == '0':
+            ui.flowB.setStyleSheet("background-color: green; color: white;")
+        else: ui.flowB.setStyleSheet("background-color: black; color: white;")
+
+        if data[0][5:6] == '0':
+            ui.ionB.setStyleSheet("background-color: green; color: white;")
+        else: ui.ionB.setStyleSheet("background-color: black; color: white;")
 
 
     mod_change_fid(data[0])
