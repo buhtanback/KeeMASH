@@ -56,7 +56,7 @@ def onOpen():
     serial.open(QIODevice.ReadWrite)
 
 def feedback():
-    commands = [("garland_echo", 1500), ("red_led_echo", 1500), ("sens_echo", 1500), ("choinka", 1500), ("bedside_echo", 1500), ("echo_turb", 1500)]
+    commands = [("garland_echo", 1300), ("red_led_echo", 1300), ("sens_echo", 1300), ("choinka", 1300), ("bedside_echo", 1300), ("echo_turb", 1300)]
     for i, (command, delay) in enumerate(commands):
         QTimer.singleShot(sum(item[1] for item in commands[:i+1]), lambda cmd=command: sendi(cmd))
     print("feeeeeeeeeeee")
@@ -134,7 +134,7 @@ def onRead():
     if data[0] == 'bedside_on':
         ui.bedLB.setStyleSheet("background-color: green; color: white;")
     if data[0] == 'bedside_off':
-        ui.bedLB.setStyleSheet("background-color: green; color: white;")
+        ui.bedLB.setStyleSheet("background-color: black; color: white;")
 
     if data[0][:2] == '03':
         spF = data[0][2:]
@@ -213,6 +213,8 @@ def onRead():
         else: ui.ionB.setStyleSheet("background-color: black; color: white;")
 
     if data[0][:2] == '15':
+        ui.huB.setStyleSheet("background-color: green; color: white;")
+
         if data[0][2:3] == '0':
             ui.turbo1B.setStyleSheet("background-color: green; color: white;")
         else: ui.turbo1B.setStyleSheet("background-color: black; color: white;")
@@ -258,6 +260,7 @@ ui.pumpB.clicked.connect(lambda: sendi("pomp"))
 ui.turbo1B.clicked.connect(lambda: sendi("turbo1"))
 ui.flowB.clicked.connect(lambda: sendi("flow"))
 ui.ionB.clicked.connect(lambda: sendi("ion"))
+ui.huB.clicked.connect(lambda: sendi("hu_on"))
 
 ui.choB.clicked.connect(lambda: sendi("choinka"))
 
