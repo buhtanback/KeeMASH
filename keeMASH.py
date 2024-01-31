@@ -87,6 +87,10 @@ def mod_change_fid(x):
     if x[:2] == '01':
         set_col_ind("modBoxR", int(x[-1]), "grey")
 
+def mod_colorBox_fid(x):
+    if x[:2] == '21':
+        set_col_ind("colorBox", int(x[-1]), "grey")
+
 def bri_change_fid(x):
     match x:
         case "020": set_col_ind("briBoxR", 0, "grey")
@@ -100,6 +104,20 @@ def bri_change_fid(x):
         case "02204": set_col_ind ("briBoxR", 8, "grey")
         case "02230": set_col_ind ("briBoxR", 9, "grey")
         case "02255": set_col_ind ("briBoxR", 10, "grey")
+
+def watLBox_change_fid(x):
+    match x:
+        case "200": set_col_ind("watLBox", 0, "grey")
+        case "2026": set_col_ind("watLBox", 1, "grey")
+        case "2051": set_col_ind("watLBox", 2, "grey")
+        case "2077": set_col_ind("watLBox", 3, "grey")
+        case "20102": set_col_ind("watLBox", 4, "grey")
+        case "20128": set_col_ind("watLBox", 5, "grey")
+        case "20153": set_col_ind("watLBox", 6, "grey")
+        case "20179": set_col_ind ("watLBox", 7, "grey")
+        case "20204": set_col_ind ("watLBox", 8, "grey")
+        case "20230": set_col_ind ("watLBox", 9, "grey")
+        case "20255": set_col_ind ("watLBox", 10, "grey")
 
 def reti():                                # тут можуть бути баги
     txt = "05" + ui.spedE.text()
@@ -234,6 +252,8 @@ def onRead():
             ui.ionB.setStyleSheet("background-color: green; color: white;")
         else: ui.ionB.setStyleSheet("background-color: black; color: white;")
 
+    watLBox_change_fid(data[0])
+    mod_colorBox_fid(data[0])
 
     mod_change_fid(data[0])
     bri_change_fid(data[0])
