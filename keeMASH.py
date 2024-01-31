@@ -67,14 +67,22 @@ def onClose():
 
 def sendi (datic):
     serial.writeData(datic.encode('utf-8'))
-
-def modBoxR_change(index):
-    sendi(f'01_mode_{index}')
-
 def set_col_ind (x, u, y):
     getattr(ui, x).setCurrentIndex(u)
     getattr(ui, x).setStyleSheet(f"background-color: {y}; color: white;")
 
+def modBoxR_change(index):
+    sendi(f'01_mode_{index}')
+def colorBox_change(index):
+    sendi(f'18{index}')
+def watLBox_change(index):
+    if index <= 9:
+        sendi(f'19{index}')
+    else: sendi(f'19M')
+def briBoxR_change(index):
+    if index <= 9:
+        sendi(f'02_bri_{index}')
+    else: sendi(f'02_bri_M')
 def mod_change_fid(x):
     if x[:2] == '01':
         set_col_ind("modBoxR", int(x[-1]), "grey")
@@ -92,11 +100,6 @@ def bri_change_fid(x):
         case "02204": set_col_ind ("briBoxR", 8, "grey")
         case "02230": set_col_ind ("briBoxR", 9, "grey")
         case "02255": set_col_ind ("briBoxR", 10, "grey")
-
-def briBoxR_change(index):
-    if index <= 9:
-        sendi(f'02_bri_{index}')
-    else: sendi(f'02_bri_M')
 
 def reti():                                # тут можуть бути баги
     txt = "05" + ui.spedE.text()
@@ -235,6 +238,8 @@ def onRead():
     mod_change_fid(data[0])
     bri_change_fid(data[0])
 
+ui.colorBox.activated.connect(colorBox_change)
+ui.watLBox.activated.connect(watLBox_change)
 
 ui.modBoxR.activated.connect(modBoxR_change)
 ui.briBoxR.activated.connect(briBoxR_change)
@@ -260,7 +265,7 @@ ui.pumpB.clicked.connect(lambda: sendi("pomp"))
 ui.turbo1B.clicked.connect(lambda: sendi("turbo1"))
 ui.flowB.clicked.connect(lambda: sendi("flow"))
 ui.ionB.clicked.connect(lambda: sendi("ion"))
-ui.huB.clicked.connect(lambda: sendi("hu_on"))
+ui.huB.clicked.connect(lambda: sendi("huOn"))
 
 ui.choB.clicked.connect(lambda: sendi("choinka"))
 

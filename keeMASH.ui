@@ -496,49 +496,136 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>500</x>
       <y>10</y>
-      <width>82</width>
-      <height>175</height>
+      <width>84</width>
+      <height>247</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_11">
+    <layout class="QVBoxLayout" name="verticalLayout_12">
      <item>
-      <widget class="QPushButton" name="huB">
-       <property name="text">
-        <string>humidifier</string>
-       </property>
+      <layout class="QVBoxLayout" name="verticalLayout_11">
+       <item>
+        <widget class="QPushButton" name="huB">
+         <property name="text">
+          <string>humidifier</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pumpB">
+         <property name="text">
+          <string>pump</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="turbo1B">
+         <property name="text">
+          <string>turbo1</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="flowB">
+         <property name="text">
+          <string>flow</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="ionB">
+         <property name="text">
+          <string>ionic</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QComboBox" name="watLBox">
+       <item>
+        <property name="text">
+         <string>0%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>10%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>20%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>30%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>40%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>50%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>60%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>70%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>80%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>90%</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>100%</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pumpB">
-       <property name="text">
-        <string>pump</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="turbo1B">
-       <property name="text">
-        <string>turbo1</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="flowB">
-       <property name="text">
-        <string>flow</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="ionB">
-       <property name="text">
-        <string>ionic</string>
-       </property>
+      <widget class="QComboBox" name="colorBox">
+       <item>
+        <property name="text">
+         <string>Black</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Red</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Green</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>White</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>
@@ -552,6 +639,8 @@
    <zorder>layoutWidget</zorder>
    <zorder>choB</zorder>
    <zorder>choT</zorder>
+   <zorder>colorBox</zorder>
+   <zorder>watLBox</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
