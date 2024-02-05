@@ -289,6 +289,8 @@ ui.huB.clicked.connect(lambda: sendi("huOn"))
 
 ui.choB.clicked.connect(lambda: sendi("choinka"))
 
+ui.jajoB.clicked.connect(lambda: sendi("jajo"))
+
 ui.speedBU.clicked.connect(lambda: sendi("redl_sp+"))
 ui.speedBD.clicked.connect(lambda: sendi("redl_sp-"))
 

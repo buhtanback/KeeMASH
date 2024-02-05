@@ -496,7 +496,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>500</x>
@@ -630,6 +630,19 @@
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="jajoB">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>10</y>
+      <width>83</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>jajo</string>
+    </property>
+   </widget>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
@@ -639,8 +652,7 @@
    <zorder>layoutWidget</zorder>
    <zorder>choB</zorder>
    <zorder>choT</zorder>
-   <zorder>colorBox</zorder>
-   <zorder>watLBox</zorder>
+   <zorder>jajoB</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
