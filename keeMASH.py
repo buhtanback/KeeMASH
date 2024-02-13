@@ -71,6 +71,8 @@ def set_col_ind (x, u, y):
     getattr(ui, x).setCurrentIndex(u)
     getattr(ui, x).setStyleSheet(f"background-color: {y}; color: white;")
 
+def turboBox_change(index):
+    sendi(f'14{index}')
 def modBoxR_change(index):
     sendi(f'01_mode_{index}')
 def colorBox_change(index):
@@ -139,8 +141,8 @@ def onRead():
 
     if data[0] == 'pimpa':
         ui.pumpB.setStyleSheet("background-color: green; color: white;")
-    if data[0] == 'turbo1':
-        ui.turbo1B.setStyleSheet("background-color: black; color: white;")
+    #if data[0] == 'turbo1':
+        #ui.turbo1B.setStyleSheet("background-color: black; color: white;")
 
     if data[0] == 'garland_on':
         ui.pushB.setStyleSheet("background-color: green; color: white;")
@@ -217,9 +219,9 @@ def onRead():
 
     if data[0][:2] == '14':
         x = data[0][2:]
-        if x == '1':
-            ui.turbo1B.setStyleSheet("background-color: green; color: white;")
-        else: ui.turbo1B.setStyleSheet("background-color: black; color: white;")
+        if x == '0':
+            ui.turboBox.setStyleSheet("background-color: black; color: white;")
+        else: ui.turboBox.setStyleSheet("background-color: grey; color: white;")
 
     if data[0][:2] == '16':
         x = data[0][2:]
@@ -237,8 +239,17 @@ def onRead():
         ui.huB.setStyleSheet("background-color: green; color: white;")
 
         if data[0][2:3] == '0':
-            ui.turbo1B.setStyleSheet("background-color: green; color: white;")
-        else: ui.turbo1B.setStyleSheet("background-color: black; color: white;")
+            ui.turboBox.setStyleSheet("background-color: black; color: white;")
+            ui.turboBox.setCurrentIndex(0)
+        elif data[0][2:3] == '1':
+            ui.turboBox.setCurrentIndex(1)
+            ui.turboBox.setStyleSheet("background-color: grey; color: white;")
+        elif data[0][2:3] == '2':
+            ui.turboBox.setCurrentIndex(2)
+            ui.turboBox.setStyleSheet("background-color: grey; color: white;")
+        else:
+            ui.turboBox.setCurrentIndex(3)
+            ui.turboBox.setStyleSheet("background-color: grey; color: white;")
 
         if data[0][3:4] == '0':
             ui.pumpB.setStyleSheet("background-color: green; color: white;")
@@ -264,6 +275,8 @@ ui.watLBox.activated.connect(watLBox_change)
 ui.modBoxR.activated.connect(modBoxR_change)
 ui.briBoxR.activated.connect(briBoxR_change)
 
+ui.turboBox.activated.connect(turboBox_change)
+
 serial.readyRead.connect(onRead)
 
 ui.upB.clicked.connect(feedback)
@@ -282,7 +295,7 @@ ui.luxB.clicked.connect(lambda: sendi("lux_echo"))
 ui.atmB.clicked.connect(lambda: sendi("atm_echo"))
 
 ui.pumpB.clicked.connect(lambda: sendi("pomp"))
-ui.turbo1B.clicked.connect(lambda: sendi("turbo1"))
+#ui.turbo1B.clicked.connect(lambda: sendi("turbo1"))
 ui.flowB.clicked.connect(lambda: sendi("flow"))
 ui.ionB.clicked.connect(lambda: sendi("ion"))
 ui.huB.clicked.connect(lambda: sendi("huOn"))

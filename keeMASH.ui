@@ -516,16 +516,33 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pumpB">
-         <property name="text">
-          <string>pump</string>
-         </property>
+        <widget class="QComboBox" name="turboBox">
+         <item>
+          <property name="text">
+           <string>OFF</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>L</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>M</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>H</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="turbo1B">
+        <widget class="QPushButton" name="pumpB">
          <property name="text">
-          <string>turbo1</string>
+          <string>pump</string>
          </property>
         </widget>
        </item>
