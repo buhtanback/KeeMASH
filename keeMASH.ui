@@ -660,6 +660,52 @@
      <string>jajo</string>
     </property>
    </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>180</y>
+      <width>227</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_13">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QCheckBox" name="checkEvent_1">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTimeEdit" name="timeEvent_1"/>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEvent_1"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QCheckBox" name="checkEvent_2">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTimeEdit" name="timeEvent_2"/>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEvent_2"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
@@ -670,6 +716,12 @@
    <zorder>choB</zorder>
    <zorder>choT</zorder>
    <zorder>jajoB</zorder>
+   <zorder>timeEvent_1</zorder>
+   <zorder>timeEvent_2</zorder>
+   <zorder>checkEvent_1</zorder>
+   <zorder>checkEvent_2</zorder>
+   <zorder>lineEvent_1</zorder>
+   <zorder>lineEvent_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

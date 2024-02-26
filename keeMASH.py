@@ -268,7 +268,35 @@ def onRead():
 
     mod_change_fid(data[0])
     bri_change_fid(data[0])
+#///////////////////////////////////////////////
+def checkEvent_1():
+    if ui.checkEvent_1.isChecked():
+        print("Чекбокс встановлено")
+    else:
+        print("Чекбокс скасовано")
+def checkEvent_2():
+    if ui.checkEvent_2.isChecked():
+        print("Чекбокс встановлено")
+    else:
+        print("Чекбокс скасовано")
+def readT1():
+    time = ui.timeEvent_1.time()
+    print("Час1:", time.toString("hh:mm:ss"))
+def readT2():
+    time = ui.timeEvent_2.time()
+    print("Час2:", time.toString("hh:mm:ss"))
+def saveT1():
+    saved_text = ui.lineEvent_1.text()
+    print("Збережено текст1:", saved_text)
+    readT1()
+def saveT2():
+    saved_text = ui.lineEvent_2.text()
+    print("Збережено текст2:", saved_text)
+    readT2()
 
+ui.lineEvent_1.returnPressed.connect(saveT1)
+ui.lineEvent_2.returnPressed.connect(saveT2)
+#/////////////////////////////////////////////////////
 ui.colorBox.activated.connect(colorBox_change)
 ui.watLBox.activated.connect(watLBox_change)
 
@@ -295,7 +323,6 @@ ui.luxB.clicked.connect(lambda: sendi("lux_echo"))
 ui.atmB.clicked.connect(lambda: sendi("atm_echo"))
 
 ui.pumpB.clicked.connect(lambda: sendi("pomp"))
-#ui.turbo1B.clicked.connect(lambda: sendi("turbo1"))
 ui.flowB.clicked.connect(lambda: sendi("flow"))
 ui.ionB.clicked.connect(lambda: sendi("ion"))
 ui.huB.clicked.connect(lambda: sendi("huOn"))
