@@ -1,4 +1,5 @@
-
+from PyQt5 import QtWidgets, uic, QtCore
+from PyQt5.QtCore import QTimer, QTime, pyqtSignal
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
 from PyQt5.QtCore import QIODevice, QTimer
@@ -294,9 +295,61 @@ def saveT2():
     print("Збережено текст2:", saved_text)
     readT2()
 
-ui.lineEvent_1.returnPressed.connect(saveT1)
-ui.lineEvent_2.returnPressed.connect(saveT2)
+
 #/////////////////////////////////////////////////////
+
+class TimerWidget(QtWidgets.QWidget):
+    timer1_timeout = QtCore.pyqtSignal()
+    timer2_timeout = QtCore.pyqtSignal()
+
+    def __init__(self):
+        super().__init__()
+
+        self.timer1 = QtCore.QTimer(self)
+        self.timer1.timeout.connect(self.timer1_timeout.emit)
+
+        self.timer2 = QtCore.QTimer(self)
+        self.timer2.timeout.connect(self.timer2_timeout.emit)
+
+        ui.timeEvent_1.timeChanged.connect(self.set_timer1)
+        ui.timeEvent_2.timeChanged.connect(self.set_timer2)
+
+        self.timer1_timeout.connect(saveT1)
+        self.timer2_timeout.connect(saveT2)
+
+        ui.checkEvent_1.stateChanged.connect(self.toggle_timer1)
+        ui.checkEvent_2.stateChanged.connect(self.toggle_timer2)
+
+    def set_timer1(self):
+        if ui.checkEvent_1.isChecked():
+            time = ui.timeEvent_1.time()
+            self.timer1.setSingleShot(True)
+            self.timer1.setInterval(QTime.currentTime().msecsTo(time))
+            self.timer1.start()
+
+    def set_timer2(self):
+        if ui.checkEvent_2.isChecked():
+            time = ui.timeEvent_2.time()
+            self.timer2.setSingleShot(True)
+            self.timer2.setInterval(QTime.currentTime().msecsTo(time))
+            self.timer2.start()
+
+    def toggle_timer1(self, state):
+        if state == QtCore.Qt.Checked:
+            self.set_timer1()
+        else:
+            self.timer1.stop()
+
+    def toggle_timer2(self, state):
+        if state == QtCore.Qt.Checked:
+            self.set_timer2()
+        else:
+            self.timer2.stop()
+
+
+timer_widget = TimerWidget()
+
+###############
 ui.colorBox.activated.connect(colorBox_change)
 ui.watLBox.activated.connect(watLBox_change)
 
