@@ -1,11 +1,12 @@
-
+from PyQt5 import QtWidgets, uic, QtCore
+from PyQt5.QtCore import QTimer, QTime, pyqtSignal
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
 from PyQt5.QtCore import QIODevice, QTimer
 import sqlite3
 import datetime
 
-choBD = sqlite3.connect('choinka_data.db')
+#choBD = sqlite3.connect('choinka_data.db')
 
 app = QtWidgets.QApplication([])
 ui = uic.loadUi("keeMASH.ui")
@@ -20,36 +21,36 @@ for port in ports:
     portList.append(port.portName())
 ui.comboBox.addItems(portList)
 
-def clear_cho_table():
-    cursor = choBD.cursor()
-    cursor.execute("DELETE FROM humidity")
+#def clear_cho_table():
+    #cursor = choBD.cursor()
+    #cursor.execute("DELETE FROM humidity")
 
-    choBD.commit()
-    cursor.close()
+    #choBD.commit()
+    #cursor.close()
 
-def get_cho():
-    cursor = choBD.cursor()
-    cursor.execute("SELECT * FROM humidity ORDER BY date DESC LIMIT 8")
-    results = cursor.fetchall()
-    cursor.close()
-    return results
+#def get_cho():
+    #cursor = choBD.cursor()
+    #cursor.execute("SELECT * FROM humidity ORDER BY date DESC LIMIT 8")
+    #results = cursor.fetchall()
+    #cursor.close()
+    #return results
 
-def update_choT():
+#def update_choT():
 
-    first_measurements = get_cho()
-    display_text = ""
-    for date, humidity in first_measurements:
-        display_text += f"{date} choinka {humidity}\n"
+    #first_measurements = get_cho()
+    #display_text = ""
+    #for date, humidity in first_measurements:
+        #display_text += f"{date} choinka {humidity}\n"
 
-    ui.choT.setText(display_text)
+    #ui.choT.setText(display_text)
 
-def add_choinka_db(x):
-    choBD = sqlite3.connect('choinka_data.db')
-    c = choBD.cursor()
-    c.execute("INSERT INTO humidity (date, humidity_level) VALUES (?, ?)",
-              (datetime.datetime.now().strftime("%m-%d %H:%M"), x))
-    choBD.commit()
-    choBD.close()
+#def add_choinka_db(x):
+    #choBD = sqlite3.connect('choinka_data.db')
+    #c = choBD.cursor()
+    #c.execute("INSERT INTO humidity (date, humidity_level) VALUES (?, ?)",
+     #         (datetime.datetime.now().strftime("%m-%d %H:%M"), x))
+    #choBD.commit()
+    #choBD.close()
 
 def onOpen():
     serial.setPortName(ui.comboBox.currentText())
@@ -190,11 +191,11 @@ def onRead():
         ui.lcdAtm.display(atm)
         ui.atmB.setStyleSheet("background-color: green; color: white;")
 
-    if data[0][:2] == '09':
-        cho = data[0][2:]
-        add_choinka_db(cho)
-        update_choT()
-        ui.choB.setStyleSheet("background-color: green; color: white;")
+    #if data[0][:2] == '09':
+        #cho = data[0][2:]
+        #add_choinka_db(cho)
+        #update_choT()
+        #ui.choB.setStyleSheet("background-color: green; color: white;")
 
     if data[0][:2] == '10':
         pm1 = data[0][2:]
@@ -281,22 +282,74 @@ def checkEvent_2():
         print("Чекбокс скасовано")
 def readT1():
     time = ui.timeEvent_1.time()
-    print("Час1:", time.toString("hh:mm:ss"))
+    #print("Час1:", time.toString("hh:mm:ss"))
 def readT2():
     time = ui.timeEvent_2.time()
-    print("Час2:", time.toString("hh:mm:ss"))
+    #print("Час2:", time.toString("hh:mm:ss"))
 def saveT1():
     saved_text = ui.lineEvent_1.text()
-    print("Збережено текст1:", saved_text)
+    sendi( saved_text)
     readT1()
 def saveT2():
     saved_text = ui.lineEvent_2.text()
-    print("Збережено текст2:", saved_text)
+    sendi( saved_text)
     readT2()
 
-ui.lineEvent_1.returnPressed.connect(saveT1)
-ui.lineEvent_2.returnPressed.connect(saveT2)
+
 #/////////////////////////////////////////////////////
+
+class TimerWidget(QtWidgets.QWidget):
+    timer1_timeout = QtCore.pyqtSignal()
+    timer2_timeout = QtCore.pyqtSignal()
+
+    def __init__(self):
+        super().__init__()
+
+        self.timer1 = QtCore.QTimer(self)
+        self.timer1.timeout.connect(self.timer1_timeout.emit)
+
+        self.timer2 = QtCore.QTimer(self)
+        self.timer2.timeout.connect(self.timer2_timeout.emit)
+
+        ui.timeEvent_1.timeChanged.connect(self.set_timer1)
+        ui.timeEvent_2.timeChanged.connect(self.set_timer2)
+
+        self.timer1_timeout.connect(saveT1)
+        self.timer2_timeout.connect(saveT2)
+
+        ui.checkEvent_1.stateChanged.connect(self.toggle_timer1)
+        ui.checkEvent_2.stateChanged.connect(self.toggle_timer2)
+
+    def set_timer1(self):
+        if ui.checkEvent_1.isChecked():
+            time = ui.timeEvent_1.time()
+            self.timer1.setSingleShot(True)
+            self.timer1.setInterval(QTime.currentTime().msecsTo(time))
+            self.timer1.start()
+
+    def set_timer2(self):
+        if ui.checkEvent_2.isChecked():
+            time = ui.timeEvent_2.time()
+            self.timer2.setSingleShot(True)
+            self.timer2.setInterval(QTime.currentTime().msecsTo(time))
+            self.timer2.start()
+
+    def toggle_timer1(self, state):
+        if state == QtCore.Qt.Checked:
+            self.set_timer1()
+        else:
+            self.timer1.stop()
+
+    def toggle_timer2(self, state):
+        if state == QtCore.Qt.Checked:
+            self.set_timer2()
+        else:
+            self.timer2.stop()
+
+
+timer_widget = TimerWidget()
+
+###############
 ui.colorBox.activated.connect(colorBox_change)
 ui.watLBox.activated.connect(watLBox_change)
 
@@ -327,7 +380,7 @@ ui.flowB.clicked.connect(lambda: sendi("flow"))
 ui.ionB.clicked.connect(lambda: sendi("ion"))
 ui.huB.clicked.connect(lambda: sendi("huOn"))
 
-ui.choB.clicked.connect(lambda: sendi("choinka"))
+#ui.choB.clicked.connect(lambda: sendi("choinka"))
 
 ui.jajoB.clicked.connect(lambda: sendi("jajo"))
 

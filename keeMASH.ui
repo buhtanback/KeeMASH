@@ -72,7 +72,7 @@
       <x>740</x>
       <y>10</y>
       <width>91</width>
-      <height>63</height>
+      <height>52</height>
      </rect>
     </property>
     <property name="orientation">
@@ -416,32 +416,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="choB">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>370</y>
-      <width>83</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>choinka</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="choT">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>410</y>
-      <width>151</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
@@ -660,7 +634,7 @@
      <string>jajo</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -680,7 +654,21 @@
         </widget>
        </item>
        <item>
-        <widget class="QTimeEdit" name="timeEvent_1"/>
+        <widget class="QTimeEdit" name="timeEvent_1">
+         <property name="dateTime">
+          <datetime>
+           <hour>23</hour>
+           <minute>0</minute>
+           <second>0</second>
+           <year>2023</year>
+           <month>12</month>
+           <day>31</day>
+          </datetime>
+         </property>
+         <property name="calendarPopup">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLineEdit" name="lineEvent_1"/>
@@ -697,7 +685,18 @@
         </widget>
        </item>
        <item>
-        <widget class="QTimeEdit" name="timeEvent_2"/>
+        <widget class="QTimeEdit" name="timeEvent_2">
+         <property name="dateTime">
+          <datetime>
+           <hour>23</hour>
+           <minute>0</minute>
+           <second>0</second>
+           <year>2023</year>
+           <month>12</month>
+           <day>31</day>
+          </datetime>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLineEdit" name="lineEvent_2"/>
@@ -710,18 +709,11 @@
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
    <zorder>upB</zorder>
    <zorder>splitter_2</zorder>
    <zorder>layoutWidget</zorder>
-   <zorder>choB</zorder>
-   <zorder>choT</zorder>
    <zorder>jajoB</zorder>
-   <zorder>timeEvent_1</zorder>
-   <zorder>timeEvent_2</zorder>
-   <zorder>checkEvent_1</zorder>
-   <zorder>checkEvent_2</zorder>
-   <zorder>lineEvent_1</zorder>
-   <zorder>lineEvent_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -729,7 +721,7 @@
      <x>0</x>
      <y>0</y>
      <width>848</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
