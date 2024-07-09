@@ -6,7 +6,7 @@ from PyQt5.QtCore import QIODevice, QTimer
 import sqlite3
 import datetime
 
-choBD = sqlite3.connect('choinka_data.db')
+#choBD = sqlite3.connect('choinka_data.db')
 
 app = QtWidgets.QApplication([])
 ui = uic.loadUi("keeMASH.ui")
@@ -21,36 +21,36 @@ for port in ports:
     portList.append(port.portName())
 ui.comboBox.addItems(portList)
 
-def clear_cho_table():
-    cursor = choBD.cursor()
-    cursor.execute("DELETE FROM humidity")
+#def clear_cho_table():
+    #cursor = choBD.cursor()
+    #cursor.execute("DELETE FROM humidity")
 
-    choBD.commit()
-    cursor.close()
+    #choBD.commit()
+    #cursor.close()
 
-def get_cho():
-    cursor = choBD.cursor()
-    cursor.execute("SELECT * FROM humidity ORDER BY date DESC LIMIT 8")
-    results = cursor.fetchall()
-    cursor.close()
-    return results
+#def get_cho():
+    #cursor = choBD.cursor()
+    #cursor.execute("SELECT * FROM humidity ORDER BY date DESC LIMIT 8")
+    #results = cursor.fetchall()
+    #cursor.close()
+    #return results
 
-def update_choT():
+#def update_choT():
 
-    first_measurements = get_cho()
-    display_text = ""
-    for date, humidity in first_measurements:
-        display_text += f"{date} choinka {humidity}\n"
+    #first_measurements = get_cho()
+    #display_text = ""
+    #for date, humidity in first_measurements:
+        #display_text += f"{date} choinka {humidity}\n"
 
-    ui.choT.setText(display_text)
+    #ui.choT.setText(display_text)
 
-def add_choinka_db(x):
-    choBD = sqlite3.connect('choinka_data.db')
-    c = choBD.cursor()
-    c.execute("INSERT INTO humidity (date, humidity_level) VALUES (?, ?)",
-              (datetime.datetime.now().strftime("%m-%d %H:%M"), x))
-    choBD.commit()
-    choBD.close()
+#def add_choinka_db(x):
+    #choBD = sqlite3.connect('choinka_data.db')
+    #c = choBD.cursor()
+    #c.execute("INSERT INTO humidity (date, humidity_level) VALUES (?, ?)",
+     #         (datetime.datetime.now().strftime("%m-%d %H:%M"), x))
+    #choBD.commit()
+    #choBD.close()
 
 def onOpen():
     serial.setPortName(ui.comboBox.currentText())
@@ -191,11 +191,11 @@ def onRead():
         ui.lcdAtm.display(atm)
         ui.atmB.setStyleSheet("background-color: green; color: white;")
 
-    if data[0][:2] == '09':
-        cho = data[0][2:]
-        add_choinka_db(cho)
-        update_choT()
-        ui.choB.setStyleSheet("background-color: green; color: white;")
+    #if data[0][:2] == '09':
+        #cho = data[0][2:]
+        #add_choinka_db(cho)
+        #update_choT()
+        #ui.choB.setStyleSheet("background-color: green; color: white;")
 
     if data[0][:2] == '10':
         pm1 = data[0][2:]
@@ -264,6 +264,14 @@ def onRead():
             ui.ionB.setStyleSheet("background-color: green; color: white;")
         else: ui.ionB.setStyleSheet("background-color: black; color: white;")
 
+    if data[0][:2] == '22':  # Відображення CO2
+        co2 = data[0][2:]
+        if co2.isdigit():  # Перевірка, чи є значення числом
+            ui.lcdCO2.setDigitCount(6)  # Встановлення кількості цифр
+            ui.lcdCO2.display(int(co2))  # Використання lcdCO2
+            ui.CO2.setStyleSheet("background-color: green; color: white;")  # Встановлення стилю кнопки CO2
+
+
     watLBox_change_fid(data[0])
     mod_colorBox_fid(data[0])
 
@@ -282,17 +290,17 @@ def checkEvent_2():
         print("Чекбокс скасовано")
 def readT1():
     time = ui.timeEvent_1.time()
-    print("Час1:", time.toString("hh:mm:ss"))
+    #print("Час1:", time.toString("hh:mm:ss"))
 def readT2():
     time = ui.timeEvent_2.time()
-    print("Час2:", time.toString("hh:mm:ss"))
+    #print("Час2:", time.toString("hh:mm:ss"))
 def saveT1():
     saved_text = ui.lineEvent_1.text()
-    print("Збережено текст1:", saved_text)
+    sendi( saved_text)
     readT1()
 def saveT2():
     saved_text = ui.lineEvent_2.text()
-    print("Збережено текст2:", saved_text)
+    sendi( saved_text)
     readT2()
 
 
@@ -380,7 +388,7 @@ ui.flowB.clicked.connect(lambda: sendi("flow"))
 ui.ionB.clicked.connect(lambda: sendi("ion"))
 ui.huB.clicked.connect(lambda: sendi("huOn"))
 
-ui.choB.clicked.connect(lambda: sendi("choinka"))
+#ui.choB.clicked.connect(lambda: sendi("choinka"))
 
 ui.jajoB.clicked.connect(lambda: sendi("jajo"))
 
