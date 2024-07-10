@@ -179,7 +179,7 @@ def onRead():
         ui.lcdHumi.display(humi)
         ui.humiB.setStyleSheet("background-color: green; color: white;")
 
-    if data[0][:2] == '07':
+    if data[0][:2] == '017':
         lux = data[0][2:]
         ui.lcdLux.setDigitCount(7)
         ui.lcdLux.display(lux)
@@ -270,6 +270,14 @@ def onRead():
             ui.lcdCO2.setDigitCount(6)  # Встановлення кількості цифр
             ui.lcdCO2.display(int(co2))  # Використання lcdCO2
             ui.CO2.setStyleSheet("background-color: green; color: white;")  # Встановлення стилю кнопки CO2
+
+    if data[0][:2] == '07':
+        pressure = data[0][2:]
+        pressure_value = float(pressure)  # Перетворення на дробове число
+        ui.lcdpressure.setDigitCount(6)
+        ui.lcdpressure.display(pressure_value)  # Використання значення тиску як аргумент
+        ui.pressure.setStyleSheet("background-color: green; color: white;")  # Встановлення стилю кнопки
+
 
 
     watLBox_change_fid(data[0])
