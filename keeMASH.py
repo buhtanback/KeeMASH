@@ -279,6 +279,15 @@ def onRead():
         ui.pressure.setStyleSheet("background-color: green; color: white;")  # Встановлення стилю кнопки
 
 
+    if data[0][:2] == '28':  # Відображення CO2
+        soil = data[0][2:]
+        if soil.isdigit():
+            ui.lcdSoil.setDigitCount(6)
+            ui.lcdSoil.display(int(soil))
+            ui.soil.setStyleSheet("background-color: green; color: white;")
+
+
+
 
     watLBox_change_fid(data[0])
     mod_colorBox_fid(data[0])
