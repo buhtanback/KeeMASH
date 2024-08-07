@@ -66,29 +66,6 @@
      <string>update</string>
     </property>
    </widget>
-   <widget class="QSplitter" name="splitter_2">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>10</y>
-      <width>91</width>
-      <height>52</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-    <widget class="QPushButton" name="pushB">
-     <property name="text">
-      <string>garland</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="bedLB">
-     <property name="text">
-      <string>bedsideL</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
@@ -657,7 +634,7 @@
         <widget class="QTimeEdit" name="timeEvent_1">
          <property name="dateTime">
           <datetime>
-           <hour>23</hour>
+           <hour>22</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -688,7 +665,7 @@
         <widget class="QTimeEdit" name="timeEvent_2">
          <property name="dateTime">
           <datetime>
-           <hour>23</hour>
+           <hour>22</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -705,6 +682,42 @@
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>10</y>
+      <width>82</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_14">
+     <item>
+      <widget class="QSplitter" name="splitter_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QPushButton" name="pushB">
+        <property name="text">
+         <string>garland</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="bedLB">
+        <property name="text">
+         <string>bedsideL</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="lamB">
+       <property name="text">
+        <string>lampk</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
@@ -714,6 +727,7 @@
    <zorder>splitter_2</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>jajoB</zorder>
+   <zorder>lamB</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -721,7 +735,7 @@
      <x>0</x>
      <y>0</y>
      <width>848</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

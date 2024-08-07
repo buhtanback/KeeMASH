@@ -21,50 +21,18 @@ for port in ports:
     portList.append(port.portName())
 ui.comboBox.addItems(portList)
 
-#def clear_cho_table():
-    #cursor = choBD.cursor()
-    #cursor.execute("DELETE FROM humidity")
-
-    #choBD.commit()
-    #cursor.close()
-
-#def get_cho():
-    #cursor = choBD.cursor()
-    #cursor.execute("SELECT * FROM humidity ORDER BY date DESC LIMIT 8")
-    #results = cursor.fetchall()
-    #cursor.close()
-    #return results
-
-#def update_choT():
-
-    #first_measurements = get_cho()
-    #display_text = ""
-    #for date, humidity in first_measurements:
-        #display_text += f"{date} choinka {humidity}\n"
-
-    #ui.choT.setText(display_text)
-
-#def add_choinka_db(x):
-    #choBD = sqlite3.connect('choinka_data.db')
-    #c = choBD.cursor()
-    #c.execute("INSERT INTO humidity (date, humidity_level) VALUES (?, ?)",
-     #         (datetime.datetime.now().strftime("%m-%d %H:%M"), x))
-    #choBD.commit()
-    #choBD.close()
-
 def onOpen():
     serial.setPortName(ui.comboBox.currentText())
     serial.open(QIODevice.ReadWrite)
 
 def feedback():
-    commands = [("garland_echo", 1300), ("red_led_echo", 1300), ("sens_echo", 1300), ("choinka", 1300), ("bedside_echo", 1300), ("echo_turb", 1300)]
+    commands = [("garland_echo", 1300), ("red_led_echo", 1300), ("sens_echo", 1300), ("choinka", 1300), ("bedside_echo", 1300), ("echo_turb", 1300), ("lamech", 1300)]
     for i, (command, delay) in enumerate(commands):
         QTimer.singleShot(sum(item[1] for item in commands[:i+1]), lambda cmd=command: sendi(cmd))
     print("feeeeeeeeeeee")
 
 def onClose():
     serial.close()
-    #clear_cho_table()
 
 def sendi (datic):
     serial.writeData(datic.encode('utf-8'))
@@ -264,6 +232,12 @@ def onRead():
             ui.ionB.setStyleSheet("background-color: green; color: white;")
         else: ui.ionB.setStyleSheet("background-color: black; color: white;")
 
+    if data[0][:2] == 'La':
+        x = data[0][2:]
+        if x == '1':
+            ui.lamB.setStyleSheet("background-color: green; color: white;")
+        else: ui.lamB.setStyleSheet("background-color: black; color: white;")
+
     watLBox_change_fid(data[0])
     mod_colorBox_fid(data[0])
 
@@ -368,6 +342,7 @@ ui.closeB.clicked.connect(onClose)
 ui.bedLB.clicked.connect(lambda: sendi("bedside"))
 ui.pushB.clicked.connect(lambda: sendi("garland"))
 ui.redB.clicked.connect(lambda: sendi("power"))
+ui.lamB.clicked.connect(lambda: sendi("lam"))
 
 ui.ppmB.clicked.connect(lambda: sendi("ppm_echo"))
 ui.tempB.clicked.connect(lambda: sendi("temp_echo"))
@@ -380,7 +355,6 @@ ui.flowB.clicked.connect(lambda: sendi("flow"))
 ui.ionB.clicked.connect(lambda: sendi("ion"))
 ui.huB.clicked.connect(lambda: sendi("huOn"))
 
-#ui.choB.clicked.connect(lambda: sendi("choinka"))
 
 ui.jajoB.clicked.connect(lambda: sendi("jajo"))
 
