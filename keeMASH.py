@@ -3,14 +3,20 @@ from PyQt5.QtCore import QTimer, QTime, pyqtSignal
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
 from PyQt5.QtCore import QIODevice, QTimer
+from PyQt5.QtWidgets import QApplication, QMessageBox
 import sqlite3
 import datetime
 
-#choBD = sqlite3.connect('choinka_data.db')
 
 app = QtWidgets.QApplication([])
 ui = uic.loadUi("keeMASH.ui")
 ui.setWindowTitle("keeMASH")
+
+msg = QMessageBox()
+msg.setIcon(QMessageBox.Information)
+msg.setText("яїчка готові")
+msg.setWindowTitle("яйовар")
+msg.setStandardButtons(QMessageBox.Ok)
 
 serial = QSerialPort()
 serial.setBaudRate (115200)
@@ -107,6 +113,9 @@ def onRead():
     if data[0] == 'hello':
         ui.openB.setStyleSheet("background-color: green; color: white;")
         feedback()
+
+    if data[0] == 'jajo_on':
+        msg.exec_()
 
     if data[0] == 'pimpa':
         ui.pumpB.setStyleSheet("background-color: green; color: white;")
