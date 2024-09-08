@@ -1,12 +1,13 @@
-from PyQt5 import QtWidgets, uic, QtCore
-from PyQt5.QtCore import QTimer, QTime, pyqtSignal
+from PyQt5 import uic, QtCore
+from PyQt5.QtCore import QTime, pyqtSignal
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
-from PyQt5.QtCore import QIODevice, QTimer
+from PyQt5.QtCore import QIODevice, QTimer, Qt
 from PyQt5.QtWidgets import QApplication, QMessageBox
 import sqlite3
 import datetime
 
+auto_timer = QTimer()
 
 app = QtWidgets.QApplication([])
 ui = uic.loadUi("keeMASH.ui")
@@ -26,7 +27,6 @@ ports = QSerialPortInfo().availablePorts()
 for port in ports:
     portList.append(port.portName())
 ui.comboBox.addItems(portList)
-
 def onOpen():
     serial.setPortName(ui.comboBox.currentText())
     serial.open(QIODevice.ReadWrite)
@@ -39,13 +39,11 @@ def feedback():
 
 def onClose():
     serial.close()
-
 def sendi (datic):
     serial.writeData(datic.encode('utf-8'))
 def set_col_ind (x, u, y):
     getattr(ui, x).setCurrentIndex(u)
     getattr(ui, x).setStyleSheet(f"background-color: {y}; color: white;")
-
 def turboBox_change(index):
     sendi(f'14{index}')
 def modBoxR_change(index):
@@ -63,11 +61,9 @@ def briBoxR_change(index):
 def mod_change_fid(x):
     if x[:2] == '01':
         set_col_ind("modBoxR", int(x[-1]), "grey")
-
 def mod_colorBox_fid(x):
     if x[:2] == '21':
         set_col_ind("colorBox", int(x[-1]), "grey")
-
 def bri_change_fid(x):
     match x:
         case "020": set_col_ind("briBoxR", 0, "grey")
@@ -81,7 +77,6 @@ def bri_change_fid(x):
         case "02204": set_col_ind ("briBoxR", 8, "grey")
         case "02230": set_col_ind ("briBoxR", 9, "grey")
         case "02255": set_col_ind ("briBoxR", 10, "grey")
-
 def watLBox_change_fid(x):
     match x:
         case "200": set_col_ind("watLBox", 0, "grey")
@@ -95,7 +90,6 @@ def watLBox_change_fid(x):
         case "20204": set_col_ind ("watLBox", 8, "grey")
         case "20230": set_col_ind ("watLBox", 9, "grey")
         case "20255": set_col_ind ("watLBox", 10, "grey")
-
 def reti():                                # тут можуть бути баги
     txt = "05" + ui.spedE.text()
     ui.spedE.clear()
@@ -103,7 +97,6 @@ def reti():                                # тут можуть бути баг
 def send2mash():                                # тут можуть бути баги
     sendi(ui.sendL.text())
     ui.sendL.clear()
-
 def onRead():
     rx = serial.readLine()
     rxs = str (rx, "utf-8").strip()
@@ -277,16 +270,33 @@ def saveT2():
     saved_text = ui.lineEvent_2.text()
     sendi( saved_text)
     readT2()
-
 def updox_change(s):
     if s == QtCore.Qt.Checked:
         print("Чекбокс 'updox' встановлено")
+        x = ui.autoCBox.currentIndex()
+        match x:
+            case 0:
+                print(f"Вибраний індекс60: {x}")
+                interval = 60 * 60 * 1000  # 60 хвилин у мілісекундах
+            case 1:
+                print(f"Вибраний індекс45: {x}")
+                interval = 45 * 60 * 1000  # 45 хвилин у мілісекундах
+            case 2:
+                print(f"Вибраний індекс30: {x}")
+                interval = 30 * 60 * 1000  # 30 хвилин у мілісекундах
+            case 3:
+                print(f"Вибраний індекс15: {x}")
+                interval = 15 * 60 * 1000  # 15 хвилин у мілісекундах
+
+        auto_timer.timeout.connect(feedback)
+        auto_timer.setInterval(interval)
+        auto_timer.setSingleShot(False)  # Таймер повторюється
+        auto_timer.start()  # Запускаємо таймер
 
     else:
         print("Чекбокс 'updox' скасовано")
-
+        auto_timer.stop()  # Зупиняємо таймер, якщо чекбокс скасований
 #/////////////////////////////////////////////////////
-
 class TimerWidget(QtWidgets.QWidget):
     timer1_timeout = QtCore.pyqtSignal()
     timer2_timeout = QtCore.pyqtSignal()
@@ -335,9 +345,7 @@ class TimerWidget(QtWidgets.QWidget):
         else:
             self.timer2.stop()
 
-
 timer_widget = TimerWidget()
-
 ###############
 ui.colorBox.activated.connect(colorBox_change)
 ui.watLBox.activated.connect(watLBox_change)
@@ -371,7 +379,6 @@ ui.pumpB.clicked.connect(lambda: sendi("pomp"))
 ui.flowB.clicked.connect(lambda: sendi("flow"))
 ui.ionB.clicked.connect(lambda: sendi("ion"))
 ui.huB.clicked.connect(lambda: sendi("huOn"))
-
 
 ui.jajoB.clicked.connect(lambda: sendi("jajo"))
 
