@@ -278,6 +278,12 @@ def saveT2():
     sendi( saved_text)
     readT2()
 
+def updox_change(s):
+    if s == QtCore.Qt.Checked:
+        print("Чекбокс 'updox' встановлено")
+
+    else:
+        print("Чекбокс 'updox' скасовано")
 
 #/////////////////////////////////////////////////////
 
@@ -347,6 +353,8 @@ ui.upB.clicked.connect(feedback)
 
 ui.openB.clicked.connect(onOpen)
 ui.closeB.clicked.connect(onClose)
+
+ui.updox.stateChanged.connect(updox_change)
 
 ui.bedLB.clicked.connect(lambda: sendi("bedside"))
 ui.pushB.clicked.connect(lambda: sendi("garland"))
