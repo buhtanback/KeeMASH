@@ -1,11 +1,9 @@
-from PyQt5 import uic, QtCore
-from PyQt5.QtCore import QTime, pyqtSignal
-from PyQt5 import QtWidgets, uic
+from PyQt5 import QtCore, QtWidgets, uic
+from PyQt5.QtCore import QTime, pyqtSignal, QIODevice, QTimer, Qt
 from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
-from PyQt5.QtCore import QIODevice, QTimer, Qt
 from PyQt5.QtWidgets import QApplication, QMessageBox
-import sqlite3
-import datetime
+#import sqlite3
+#import datetime
 
 auto_timer = QTimer()
 
@@ -273,6 +271,7 @@ def saveT2():
 def updox_change(s):
     if s == QtCore.Qt.Checked:
         print("Чекбокс 'updox' встановлено")
+        ui.autoCBox.setStyleSheet("background-color: green; color: white;")
         x = ui.autoCBox.currentIndex()
         match x:
             case 0:
@@ -295,6 +294,7 @@ def updox_change(s):
 
     else:
         print("Чекбокс 'updox' скасовано")
+        ui.autoCBox.setStyleSheet("background-color: grey; color: white;")
         auto_timer.stop()  # Зупиняємо таймер, якщо чекбокс скасований
 #/////////////////////////////////////////////////////
 class TimerWidget(QtWidgets.QWidget):
