@@ -398,7 +398,7 @@
      <rect>
       <x>10</x>
       <y>410</y>
-      <width>262</width>
+      <width>299</width>
       <height>63</height>
      </rect>
     </property>
@@ -408,7 +408,7 @@
        <item>
         <widget class="QPushButton" name="pm1B">
          <property name="text">
-          <string>pm 1</string>
+          <string>PM1 ug/m3</string>
          </property>
         </widget>
        </item>
@@ -422,7 +422,7 @@
        <item>
         <widget class="QPushButton" name="pm2B">
          <property name="text">
-          <string>pm 2.5</string>
+          <string>PM2.5 ug/m3</string>
          </property>
         </widget>
        </item>
@@ -436,7 +436,7 @@
        <item>
         <widget class="QPushButton" name="pm10B">
          <property name="text">
-          <string>pm 10</string>
+          <string>PM10 ug/m3</string>
          </property>
         </widget>
        </item>
@@ -634,7 +634,7 @@
         <widget class="QTimeEdit" name="timeEvent_1">
          <property name="dateTime">
           <datetime>
-           <hour>21</hour>
+           <hour>20</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -665,7 +665,7 @@
         <widget class="QTimeEdit" name="timeEvent_2">
          <property name="dateTime">
           <datetime>
-           <hour>21</hour>
+           <hour>20</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -761,6 +761,7 @@
      <string/>
     </property>
    </widget>
+   <zorder>updox</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
