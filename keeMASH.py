@@ -30,7 +30,8 @@ def onOpen():
     serial.open(QIODevice.ReadWrite)
 
 def feedback():
-    commands = [("garland_echo", 1300), ("red_led_echo", 1300), ("sens_echo", 1300), ("choinka", 1300), ("bedside_echo", 1300), ("echo_turb", 1300), ("lamech", 1300), ("pm1", 1300), ("jajoeh", 1300)]
+    commands = [("garland_echo", 1200), ("red_led_echo", 1200), ("sens_echo", 1200), ("choinka", 1200), ("bedside_echo", 1200),
+                ("echo_turb", 1200), ("lamech", 1200), ("pm1", 1200), ("jajoeh", 1200)]
     for i, (command, delay) in enumerate(commands):
         QTimer.singleShot(sum(item[1] for item in commands[:i+1]), lambda cmd=command: sendi(cmd))
     print("feeeeeeeeeeee")
@@ -297,6 +298,12 @@ def updox_change(s):
         print("Чекбокс 'updox' скасовано")
         ui.autoCBox.setStyleSheet("background-color: grey; color: white;")
         auto_timer.stop()  # Зупиняємо таймер, якщо чекбокс скасований
+
+def dbgBox_change(s):
+    if s == QtCore.Qt.Checked:
+        sendi("dbg1")
+    else:
+        sendi("dbg0")
 #/////////////////////////////////////////////////////
 class TimerWidget(QtWidgets.QWidget):
     timer1_timeout = QtCore.pyqtSignal()
@@ -364,6 +371,8 @@ ui.openB.clicked.connect(onOpen)
 ui.closeB.clicked.connect(onClose)
 
 ui.updox.stateChanged.connect(updox_change)
+
+ui.dbgBox.stateChanged.connect(dbgBox_change)
 
 ui.bedLB.clicked.connect(lambda: sendi("bedside"))
 ui.pushB.clicked.connect(lambda: sendi("garland"))

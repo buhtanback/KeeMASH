@@ -634,7 +634,7 @@
         <widget class="QTimeEdit" name="timeEvent_1">
          <property name="dateTime">
           <datetime>
-           <hour>20</hour>
+           <hour>19</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -665,7 +665,7 @@
         <widget class="QTimeEdit" name="timeEvent_2">
          <property name="dateTime">
           <datetime>
-           <hour>20</hour>
+           <hour>19</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -761,6 +761,19 @@
      <string/>
     </property>
    </widget>
+   <widget class="QCheckBox" name="dbgBox">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>70</y>
+      <width>93</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>debug</string>
+    </property>
+   </widget>
    <zorder>updox</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
@@ -772,6 +785,7 @@
    <zorder>layoutWidget</zorder>
    <zorder>jajoB</zorder>
    <zorder>autoCBox</zorder>
+   <zorder>dbgBox</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
