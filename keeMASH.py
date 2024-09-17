@@ -246,30 +246,12 @@ def onRead():
     mod_change_fid(data[0])
     bri_change_fid(data[0])
 #///////////////////////////////////////////////
-def checkEvent_1():
-    if ui.checkEvent_1.isChecked():
-        print("Чекбокс встановлено")
-    else:
-        print("Чекбокс скасовано")
-def checkEvent_2():
-    if ui.checkEvent_2.isChecked():
-        print("Чекбокс встановлено")
-    else:
-        print("Чекбокс скасовано")
-def readT1():
-    time = ui.timeEvent_1.time()
-    #print("Час1:", time.toString("hh:mm:ss"))
-def readT2():
-    time = ui.timeEvent_2.time()
-    #print("Час2:", time.toString("hh:mm:ss"))
 def saveT1():
     saved_text = ui.lineEvent_1.text()
     sendi( saved_text)
-    readT1()
 def saveT2():
     saved_text = ui.lineEvent_2.text()
     sendi( saved_text)
-    readT2()
 def updox_change(s):
     if s == QtCore.Qt.Checked:
         print("Чекбокс 'updox' встановлено")
