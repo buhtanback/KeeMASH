@@ -53,8 +53,19 @@ ui.comboBox.addItems(portList)
     #choBD.close()
 
 def onOpen():
-    serial.setPortName(ui.comboBox.currentText())
-    serial.open(QIODevice.ReadWrite)
+    try:
+        serial.setPortName(ui.comboBox.currentText())
+        if serial.open(QIODevice.ReadWrite):
+            print(f"Порт {serial.portName()} відкрито")
+            ui.openB.setStyleSheet("background-color: green; color: white;")  # Оновити індикатор підключення
+        else:
+            print(f"Не вдалося відкрити порт {serial.portName()}: {serial.errorString()}")
+            ui.openB.setStyleSheet("background-color: red; color: white;")  # Відображення помилки
+    except Exception as e:
+        print(f"Виникла помилка при відкритті порту: {e}")
+
+
+
 
 def feedback():
     commands = [("garland_echo", 1300), ("red_led_echo", 1300), ("sens_echo", 1300), ("choinka", 1300), ("bedside_echo", 1300), ("echo_turb", 1300)]
@@ -66,8 +77,15 @@ def onClose():
     serial.close()
     #clear_cho_table()
 
-def sendi (datic):
-    serial.writeData(datic.encode('utf-8'))
+def sendi(datic):
+    if serial.isOpen():
+        bytes_written = serial.write(datic.encode('utf-8'))
+        if bytes_written == -1:
+            print("Помилка запису даних у серійний порт")
+    else:
+        print("Серіальний порт не відкритий")
+
+
 def set_col_ind (x, u, y):
     getattr(ui, x).setCurrentIndex(u)
     getattr(ui, x).setStyleSheet(f"background-color: {y}; color: white;")
@@ -130,11 +148,25 @@ def send2mash():                                # тут можуть бути �
     sendi(ui.sendL.text())
     ui.sendL.clear()
 
+
 def onRead():
-    rx = serial.readLine()
-    rxs = str (rx, "utf-8").strip()
-    data = rxs.split(",")
-    print(data)
+    try:
+        rx = serial.readLine()
+        rxs = str(rx, "utf-8").strip()
+        data = rxs.split(",")
+        if len(data) == 0:
+            print("Отримано порожні дані")
+            return
+
+        print(data)
+
+        watLBox_change_fid(data[0])
+        mod_colorBox_fid(data[0])
+        mod_change_fid(data[0])
+        bri_change_fid(data[0])
+
+    except Exception as e:
+        print(f"Виникла помилка при читанні даних: {e}")
 
     if data[0] == 'hello':
         ui.openB.setStyleSheet("background-color: green; color: white;")
