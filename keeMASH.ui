@@ -634,7 +634,7 @@
         <widget class="QTimeEdit" name="timeEvent_1">
          <property name="dateTime">
           <datetime>
-           <hour>19</hour>
+           <hour>18</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -665,7 +665,7 @@
         <widget class="QTimeEdit" name="timeEvent_2">
          <property name="dateTime">
           <datetime>
-           <hour>19</hour>
+           <hour>18</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -774,6 +774,61 @@
      <string>debug</string>
     </property>
    </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>10</y>
+      <width>82</width>
+      <height>102</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_15">
+     <item>
+      <widget class="QPushButton" name="khB">
+       <property name="text">
+        <string>Kheater</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="khBox">
+       <item>
+        <property name="text">
+         <string>OFF</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Low</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hight</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Max</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>50/50</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="khrBut">
+       <property name="text">
+        <string>rotation</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
    <zorder>updox</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
@@ -786,6 +841,9 @@
    <zorder>jajoB</zorder>
    <zorder>autoCBox</zorder>
    <zorder>dbgBox</zorder>
+   <zorder>khB</zorder>
+   <zorder>khBox</zorder>
+   <zorder>khrBut</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
