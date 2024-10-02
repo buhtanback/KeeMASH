@@ -161,11 +161,11 @@ def onRead():
         ui.lcdAtm.display(atm)
         ui.atmB.setStyleSheet("background-color: green; color: white;")
 
-    #if data[0][:2] == '09':
-        #cho = data[0][2:]
-        #add_choinka_db(cho)
-        #update_choT()
-        #ui.choB.setStyleSheet("background-color: green; color: white;")
+    if data[0][:2] == '09':
+        x = data[0][2:]
+        if x == '1':
+            ui.khrBut.setStyleSheet("background-color: green; color: white;")
+        else: ui.khrBut.setStyleSheet("background-color: black; color: white;")
 
     if data[0][:2] == '10':
         pm1 = data[0][2:]
@@ -355,6 +355,8 @@ ui.closeB.clicked.connect(onClose)
 ui.updox.stateChanged.connect(updox_change)
 
 ui.dbgBox.stateChanged.connect(dbgBox_change)
+
+ui.khrBut.clicked.connect(lambda: sendi("hero"))
 
 ui.bedLB.clicked.connect(lambda: sendi("bedside"))
 ui.pushB.clicked.connect(lambda: sendi("garland"))
