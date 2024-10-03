@@ -206,6 +206,27 @@ def onRead():
             ui.ionB.setStyleSheet("background-color: green; color: white;")
         else: ui.ionB.setStyleSheet("background-color: black; color: white;")
 
+    if data[0][:2] == '25':
+        ui.khrBut.setStyleSheet("background-color: green; color: white;")
+        if data[0][2:3] == '0':
+            ui.khBox.setStyleSheet("background-color: grey; color: white;")
+            ui.khBox.setCurrentIndex(1)
+        elif data[0][2:3] == '1':
+            ui.khBox.setCurrentIndex(2)
+            ui.khBox.setStyleSheet("background-color: grey; color: white;")
+        elif data[0][2:3] == '2':
+            ui.khBox.setCurrentIndex(3)
+            ui.khBox.setStyleSheet("background-color: grey; color: white;")
+        elif data[0][2:3] == '3':
+            ui.khBox.setCurrentIndex(4)
+            ui.khBox.setStyleSheet("background-color: grey; color: white;")
+        elif data[0][2:3] == '4':
+            ui.khBox.setCurrentIndex(0)
+            ui.khBox.setStyleSheet("background-color: black; color: white;")
+        else:
+            ui.khBox.setCurrentIndex(5)
+            ui.khBox.setStyleSheet("background-color: grey; color: white;")
+
     if data[0][:2] == '15':
         ui.huB.setStyleSheet("background-color: green; color: white;")
 
