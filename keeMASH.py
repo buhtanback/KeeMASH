@@ -223,9 +223,9 @@ def onRead():
         elif data[0][2:3] == '4':
             ui.khBox.setCurrentIndex(0)
             ui.khBox.setStyleSheet("background-color: black; color: white;")
-        else:
-            ui.khBox.setCurrentIndex(5)
-            ui.khBox.setStyleSheet("background-color: grey; color: white;")
+        #else:
+            #ui.khBox.setCurrentIndex(5)
+            #ui.khBox.setStyleSheet("background-color: grey; color: white;")
 
     if data[0][:2] == '15':
         ui.huB.setStyleSheet("background-color: green; color: white;")
