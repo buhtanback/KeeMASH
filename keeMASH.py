@@ -7,6 +7,9 @@ from PyQt5.QtWidgets import QApplication, QMessageBox
 
 auto_timer = QTimer()
 
+heatBox_timer = QTimer()
+heatBox_timer.setSingleShot(True)  # Таймер спрацьовує один раз
+
 app = QtWidgets.QApplication([])
 ui = uic.loadUi("keeMASH.ui")
 ui.setWindowTitle("keeMASH")
@@ -29,6 +32,13 @@ def onOpen():
     serial.setPortName(ui.comboBox.currentText())
     serial.open(QIODevice.ReadWrite)
 
+def send_heatBox_value():
+    value = ui.heatBox.value()
+    sendi(f'R5{value}')
+    print(f"Відправка: R5: {value}")
+def on_heatBox_value_changed():
+    # Перезапускаємо таймер на 3 секунди при кожній зміні
+    heatBox_timer.start(3000)
 def feedback():
     commands = [("garland_echo", 1200), ("red_led_echo", 1200), ("sens_echo", 1200), ("choinka", 1200), ("bedside_echo", 1200),
                 ("echo_turb", 1200), ("lamech", 1200), ("pm1", 1200), ("jajoeh", 1200)]
@@ -358,6 +368,9 @@ class TimerWidget(QtWidgets.QWidget):
 
 timer_widget = TimerWidget()
 ###############
+heatBox_timer.timeout.connect(send_heatBox_value)
+ui.heatBox.valueChanged.connect(on_heatBox_value_changed)
+
 ui.colorBox.activated.connect(colorBox_change)
 ui.watLBox.activated.connect(watLBox_change)
 
