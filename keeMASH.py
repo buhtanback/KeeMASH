@@ -14,11 +14,13 @@ app = QtWidgets.QApplication([])
 ui = uic.loadUi("keeMASH.ui")
 ui.setWindowTitle("keeMASH")
 
+################################ блок який відповідає за вспливаючі вікна
 msg = QMessageBox()
 msg.setIcon(QMessageBox.Information)
 msg.setText("яїчка готові")
 msg.setWindowTitle("яйовар")
 msg.setStandardButtons(QMessageBox.Ok)
+################################
 
 serial = QSerialPort()
 serial.setBaudRate (115200)
@@ -28,16 +30,15 @@ ports = QSerialPortInfo().availablePorts()
 for port in ports:
     portList.append(port.portName())
 ui.comboBox.addItems(portList)
-def onOpen():
+def onOpen():   # очевідно шо тут відкриваеця сом порт для связі
     serial.setPortName(ui.comboBox.currentText())
     serial.open(QIODevice.ReadWrite)
 
-def send_heatBox_value():
-    value = ui.heatBox.value()
-    sendi(f'R5{value}')
-    print(f"Відправка: R5: {value}")
-def on_heatBox_value_changed():
-    # Перезапускаємо таймер на 3 секунди при кожній зміні
+def send_heatBox_value():  # відправляеця сообщеніє на Kheat шоб установити підтримуваний рівень температури
+    value = round(ui.heatBox.value(), 2)
+    sendi(f'W5{value}')
+    #print(f"Відправка: R5: {value}")
+def on_heatBox_value_changed(): # Перезапускаємо таймер на 3 секунди при кожній зміні
     heatBox_timer.start(3000)
 def feedback():
     commands = [("garland_echo", 1200), ("red_led_echo", 1200), ("sens_echo", 1200), ("choinka", 1200), ("bedside_echo", 1200),
@@ -46,9 +47,9 @@ def feedback():
         QTimer.singleShot(sum(item[1] for item in commands[:i+1]), lambda cmd=command: sendi(cmd))
     print("feeeeeeeeeeee")
 
-def onClose():
+def onClose(): # закриваеця ком порт
     serial.close()
-def sendi (datic):
+def sendi (datic): # удобна функція відправки сообщенія в МЕШ
     serial.writeData(datic.encode('utf-8'))
 def set_col_ind (x, u, y):
     getattr(ui, x).setCurrentIndex(u)
@@ -149,7 +150,7 @@ def onRead():
         ui.lcdPpm.display(ppm)
         ui.ppmB.setStyleSheet("background-color: green; color: white;")
 
-    if data[0][:2] == '05':
+    if data[0][:2] == '05':      # це приходить значеніє з есп міксера зчитуваної температури
         temp = data[0][2:]
         ui.lcdTemp.display(temp)
         ui.tempB.setStyleSheet("background-color: green; color: white;")
@@ -367,7 +368,7 @@ class TimerWidget(QtWidgets.QWidget):
             self.timer2.stop()
 
 timer_widget = TimerWidget()
-###############
+################################################################
 heatBox_timer.timeout.connect(send_heatBox_value)
 ui.heatBox.valueChanged.connect(on_heatBox_value_changed)
 

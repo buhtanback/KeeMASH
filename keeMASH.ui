@@ -634,7 +634,7 @@
         <widget class="QTimeEdit" name="timeEvent_1">
          <property name="dateTime">
           <datetime>
-           <hour>15</hour>
+           <hour>14</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -665,7 +665,7 @@
         <widget class="QTimeEdit" name="timeEvent_2">
          <property name="dateTime">
           <datetime>
-           <hour>15</hour>
+           <hour>14</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -795,6 +795,9 @@
       <widget class="QDoubleSpinBox" name="heatBox">
        <property name="singleStep">
         <double>0.100000000000000</double>
+       </property>
+       <property name="value">
+        <double>27.100000000000001</double>
        </property>
       </widget>
      </item>
