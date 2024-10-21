@@ -37,6 +37,7 @@ def onOpen():   # очевідно шо тут відкриваеця сом п�
 def send_heatBox_value():  # відправляеця сообщеніє на Kheat шоб установити підтримуваний рівень температури
     value = round(ui.heatBox.value(), 2)
     sendi(f'W5{value}')
+    ui.heatBox.setStyleSheet("background-color: grey; color: white;")
     #print(f"Відправка: R5: {value}")
 def on_heatBox_value_changed(): # Перезапускаємо таймер на 3 секунди при кожній зміні
     heatBox_timer.start(3000)
@@ -271,6 +272,13 @@ def onRead():
         if x == '1':
             ui.lamB.setStyleSheet("background-color: green; color: white;")
         else: ui.lamB.setStyleSheet("background-color: black; color: white;")
+
+    if data[0][:2] == 'R5': # принімаем фітбек про удачну змінну температури
+        x = data[0][2:]
+
+        y = float(x)
+        ui.heatBox.setValue(y)
+        ui.heatBox.setStyleSheet("background-color: green; color: white;")
 
     watLBox_change_fid(data[0])
     mod_colorBox_fid(data[0])
