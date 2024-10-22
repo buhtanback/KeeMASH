@@ -173,7 +173,7 @@ def onRead():
         ui.lcdAtm.display(atm)
         ui.atmB.setStyleSheet("background-color: green; color: white;")
 
-    if data[0][:2] == '09':
+    if data[0][:2] == '09':     # параметер оборота корпуса Kheater
         x = data[0][2:]
         if x == '1':
             ui.khrBut.setStyleSheet("background-color: green; color: white;")
@@ -219,7 +219,7 @@ def onRead():
         else: ui.ionB.setStyleSheet("background-color: black; color: white;")
 
     if data[0][:2] == '25':
-        ui.khrBut.setStyleSheet("background-color: green; color: white;")
+        #ui.khrBut.setStyleSheet("background-color: green; color: white;")
         if data[0][2:3] == '0':
             ui.khBox.setStyleSheet("background-color: grey; color: white;")
             ui.khBox.setCurrentIndex(1)
