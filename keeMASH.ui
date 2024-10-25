@@ -634,7 +634,7 @@
         <widget class="QTimeEdit" name="timeEvent_1">
          <property name="dateTime">
           <datetime>
-           <hour>14</hour>
+           <hour>13</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -665,7 +665,7 @@
         <widget class="QTimeEdit" name="timeEvent_2">
          <property name="dateTime">
           <datetime>
-           <hour>14</hour>
+           <hour>13</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2023</year>
@@ -826,6 +826,11 @@
        <item>
         <property name="text">
          <string>Max</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>AUTO</string>
         </property>
        </item>
       </widget>

@@ -280,6 +280,10 @@ def onRead():
         ui.heatBox.setValue(y)
         ui.heatBox.setStyleSheet("background-color: green; color: white;")
 
+    if data[0][:2] == 'A5': # принімаем фітбек про то шо установляний ауто мод в kheater
+        ui.khBox.setCurrentIndex(5)
+        ui.khBox.setStyleSheet("background-color: green; color: white;")
+
     watLBox_change_fid(data[0])
     mod_colorBox_fid(data[0])
 
