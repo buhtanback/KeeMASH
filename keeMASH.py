@@ -43,7 +43,7 @@ def on_heatBox_value_changed(): # Перезапускаємо таймер на
     heatBox_timer.start(3000)
 def feedback():
     commands = [("garland_echo", 1200), ("red_led_echo", 1200), ("sens_echo", 1200), ("choinka", 1200), ("bedside_echo", 1200),
-                ("echo_turb", 1200), ("lamech", 1200), ("pm1", 1200), ("jajoeh", 1200)]
+                ("echo_turb", 1200), ("lamech", 1200), ("pm1", 1200), ("jajoeh", 1200), ("heho", 1200)]
     for i, (command, delay) in enumerate(commands):
         QTimer.singleShot(sum(item[1] for item in commands[:i+1]), lambda cmd=command: sendi(cmd))
     print("feeeeeeeeeeee")
@@ -279,10 +279,12 @@ def onRead():
         y = float(x)
         ui.heatBox.setValue(y)
         ui.heatBox.setStyleSheet("background-color: green; color: white;")
+        ui.khB.setStyleSheet("background-color: green; color: white;")
 
     if data[0][:2] == 'A5': # принімаем фітбек про то шо установляний ауто мод в kheater
         ui.khBox.setCurrentIndex(5)
         ui.khBox.setStyleSheet("background-color: green; color: white;")
+        ui.khB.setStyleSheet("background-color: green; color: white;")
 
     watLBox_change_fid(data[0])
     mod_colorBox_fid(data[0])
