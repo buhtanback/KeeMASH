@@ -14,6 +14,9 @@ app = QtWidgets.QApplication([])
 ui = uic.loadUi("keeMASH.ui")
 ui.setWindowTitle("keeMASH")
 
+ky_timer = QTimer()
+ky_timer.setInterval(300000)
+
 ################################ блок який відповідає за вспливаючі вікна
 msg = QMessageBox()
 msg.setIcon(QMessageBox.Information)
@@ -30,6 +33,10 @@ ports = QSerialPortInfo().availablePorts()
 for port in ports:
     portList.append(port.portName())
 ui.comboBox.addItems(portList)
+def ky_halo():
+    sendi("kyy")
+    ui.openB.setStyleSheet("background-color: grey; color: white;")
+ky_timer.timeout.connect(ky_halo)
 def onOpen():   # очевідно шо тут відкриваеця сом порт для связі
     serial.setPortName(ui.comboBox.currentText())
     serial.open(QIODevice.ReadWrite)
@@ -117,6 +124,10 @@ def onRead():
     if data[0] == 'hello':
         ui.openB.setStyleSheet("background-color: green; color: white;")
         feedback()
+        ky_timer.start()
+
+    if data[0] == 'ky':
+        ui.openB.setStyleSheet("background-color: green; color: white;")
 
     if data[0] == 'jajo_on':
         msg.exec_()
